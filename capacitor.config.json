@@ -1,0 +1,6 @@
+{
+  "appId": "com.blnk.store",
+  "appName": "BLNK",
+  "webDir": ".",
+  "bundledWebRuntime": false
+}
