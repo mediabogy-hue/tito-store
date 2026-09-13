@@ -1,10 +1,7 @@
 // BLNK PRODUCTS
-// Add or edit products here. You do NOT need to edit app.js.
+// Fallback catalog. The live store loads products from /api/products when available.
 // image: paste a direct image URL. Leave empty to use the BLNK placeholder.
-// sizes: write available sizes, e.g. ['M','L','XL','2XL']
-// colors: write available colors, e.g. ['Black','White']
-
-const products = [
+const BLNK_PRODUCTS = [
   {
     id: 'blnk-tshirt-001',
     name: 'Essential T-Shirt',
