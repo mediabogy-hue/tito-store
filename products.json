@@ -1,0 +1,44 @@
+[
+  {
+    "id": "essential-tshirt",
+    "name": "Essential T-Shirt",
+    "category": "tshirt",
+    "price": 349,
+    "oldPrice": null,
+    "sizes": ["M", "L", "XL"],
+    "colors": ["Black", "White"],
+    "stock": 0,
+    "image": "",
+    "note": "Clean fit / everyday essential",
+    "lastPieces": false,
+    "active": true
+  },
+  {
+    "id": "summer-shirt",
+    "name": "Summer Shirt",
+    "category": "shirt",
+    "price": 349,
+    "oldPrice": null,
+    "sizes": ["M", "L", "XL"],
+    "colors": ["White", "Black"],
+    "stock": 0,
+    "image": "",
+    "note": "Lightweight / easy fit",
+    "lastPieces": false,
+    "active": true
+  },
+  {
+    "id": "everyday-shorts",
+    "name": "Everyday Shorts",
+    "category": "shorts",
+    "price": 299,
+    "oldPrice": null,
+    "sizes": ["M", "L", "XL"],
+    "colors": ["Black"],
+    "stock": 0,
+    "image": "",
+    "note": "Relaxed / everyday",
+    "lastPieces": false,
+    "active": true
+  }
+]
