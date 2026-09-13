@@ -28,6 +28,13 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Prepare web bundle
+        run: |
+          rm -rf www
+          mkdir -p www
+          cp index.html app.js styles.css products.js products.json manifest.webmanifest www/
+          if [ -f i18n.js ]; then cp i18n.js www/; fi
+
       - name: Setup Java
         uses: actions/setup-java@v4
         with:
