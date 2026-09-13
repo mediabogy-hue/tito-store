@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="BLNK — clean everyday menswear. NO NOISE, JUST STYLE." />
+  <title>BLNK — NO NOISE, JUST STYLE.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="header">
+    <a class="logo" href="#top" aria-label="BLNK home">BLNK</a>
+    <nav class="nav" aria-label="Primary navigation">
+      <a href="#shop">Shop</a><a href="#club">BLNK Club</a><a href="#style">Style Profile</a><a href="#contact">Contact</a>
+    </nav>
+    <a class="header-wa" href="https://wa.me/201062292012" target="_blank" rel="noreferrer">WhatsApp</a>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">BLNK / EVERYDAY MENSWEAR</p>
+        <h1>NO NOISE,<br /><span>JUST STYLE.</span></h1>
+        <p class="hero-text">Clean fits. Easy pieces. A wardrobe built around your style — without the unnecessary noise.</p>
+        <div class="actions"><a class="button button-dark" href="#shop">Shop the collection</a><a class="button button-light" href="#club">Discover BLNK Club</a></div>
+      </div>
+      <div class="hero-visual"><div class="visual-card"><span>BLNK</span><small>STYLE / 001</small></div></div>
+    </section>
+
+    <section class="ticker" aria-label="Brand statement"><span>BLNK</span><span>NO NOISE, JUST STYLE.</span><span>BLNK</span><span>NO NOISE, JUST STYLE.</span></section>
+
+    <section class="section" id="shop">
+      <div class="section-head"><div><p class="eyebrow">SHOP</p><h2>Built for everyday.</h2></div><a class="text-link" href="#contact">Order via WhatsApp →</a></div>
+      <div class="filters"><button class="filter active" data-filter="all">All</button><button class="filter" data-filter="tshirt">T-Shirts</button><button class="filter" data-filter="shirt">Shirts</button><button class="filter" data-filter="shorts">Shorts</button><button class="filter" data-filter="last">Last Pieces</button></div>
+      <div class="products" id="products"></div>
+    </section>
+
+    <section class="club" id="club">
+      <div><p class="eyebrow">BLNK CLUB</p><h2>Your style.<br />Your wardrobe.<br />Your BLNK.</h2></div>
+      <div class="club-copy"><p>BLNK Club is for people who want to buy better — not simply buy more. We learn your style, understand your fit and help you make smarter wardrobe choices.</p><ul><li>Personal Style Profile</li><li>Wardrobe gap assessment</li><li>Personal recommendations</li><li>5,000 EGP clothing credit* under the program terms</li></ul><a class="button button-light" href="#style">Build my Style Profile</a></div>
+    </section>
+
+    <section class="style-section section" id="style">
+      <div class="section-head"><div><p class="eyebrow">STYLE PROFILE</p><h2>Tell us your style.</h2></div><p class="muted">A quick profile helps BLNK recommend pieces that actually fit your life.</p></div>
+      <form class="style-form" id="styleForm">
+        <label>Name<input required name="name" placeholder="Your name" /></label>
+        <label>WhatsApp<input required name="phone" placeholder="01xxxxxxxxx" /></label>
+        <label>Fit<select name="fit"><option>Regular</option><option>Oversized</option><option>Slim</option><option>Relaxed</option></select></label>
+        <label>Style<select name="style"><option>Minimal</option><option>Casual</option><option>Street</option><option>Smart Casual</option><option>Classic</option></select></label>
+        <label>Size<input name="size" placeholder="M / L / XL" /></label>
+        <label>What are you missing?<input name="gap" placeholder="e.g. T-shirts, pants, outfits" /></label>
+        <button class="button button-dark" type="submit">Send my profile</button>
+      </form>
+      <p id="formStatus" class="form-status" role="status"></p>
+    </section>
+
+    <section class="last section" id="last">
+      <div class="last-inner"><p class="eyebrow">LAST PIECES</p><h2>When it’s gone,<br />it’s gone.</h2><p>Limited quantities from previous drops. Check your size before it disappears.</p><a class="button button-dark" href="#shop">View last pieces</a></div>
+    </section>
+  </main>
+
+  <footer class="footer" id="contact">
+    <div><a class="logo" href="#top">BLNK</a><p>NO NOISE, JUST STYLE.</p></div>
+    <div class="footer-links"><a href="https://wa.me/201062292012" target="_blank" rel="noreferrer">WhatsApp 01062292012</a><a href="tel:01204107338">01204107338</a><a href="https://www.facebook.com/BLNK" target="_blank" rel="noreferrer">Facebook / BLNK</a></div>
+    <div class="footer-note"><p>* BLNK Club benefits are subject to the active program terms.</p><p>© <span id="year"></span> BLNK. All rights reserved.</p></div>
+  </footer>
+  <script src="app.js"></script>
+</body>
+</html>
