@@ -1,0 +1,9 @@
+{
+  "name": "BLNK",
+  "short_name": "BLNK",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#111111",
+  "theme_color": "#111111",
+  "description": "BLNK men's fashion store"
+}
