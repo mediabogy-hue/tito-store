@@ -1,6 +1,7 @@
 const productRoot = document.getElementById('products');
 const cartKey = 'blnk_cart_v1';
 let cart = JSON.parse(localStorage.getItem(cartKey) || '[]');
+let products = Array.isArray(window.BLNK_PRODUCTS) ? window.BLNK_PRODUCTS : [];
 
 const money = value => `EGP ${Number(value).toLocaleString()}`;
 const waNumber = '201062292012';
@@ -137,5 +138,19 @@ const status=document.getElementById('formStatus');
 form.addEventListener('submit',e=>{e.preventDefault();const data=new FormData(form);const text=`BLNK Style Profile\nName: ${data.get('name')}\nWhatsApp: ${data.get('phone')}\nFit: ${data.get('fit')}\nStyle: ${data.get('style')}\nSize: ${data.get('size')}\nWardrobe gap: ${data.get('gap')}`;window.open(`https://wa.me/${waNumber}?text=${encodeURIComponent(text)}`,'_blank');status.textContent='Your profile is ready — WhatsApp will open so BLNK can continue with you.'});
 
 document.getElementById('year').textContent=new Date().getFullYear();
-renderProducts();
-renderCart();
+
+async function initProducts(){
+  try{
+    const response = await fetch('/api/products', {cache:'no-store'});
+    if(response.ok){
+      const live = await response.json();
+      if(Array.isArray(live)) products = live.filter(p => p.active !== false);
+    }
+  }catch(error){
+    // Keep the fallback catalog from products.js when the API is unavailable.
+  }
+  renderProducts();
+  renderCart();
+}
+
+initProducts();
