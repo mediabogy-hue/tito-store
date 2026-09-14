@@ -15,42 +15,47 @@ jobs:
   build-android:
     name: Build BLNK APK
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
-
       - name: Install dependencies
         run: npm install
-
       - name: Prepare web bundle
         run: |
           rm -rf www
           mkdir -p www
-          cp index.html app.js styles.css products.js products.json manifest.webmanifest www/
-          if [ -f i18n.js ]; then cp i18n.js www/; fi
-
+          cp index.html app.js styles.css products.js products.json i18n.js admin.html logo.svg manifest.webmanifest www/
       - name: Setup Java
         uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: ${{ env.JAVA_VERSION }}
-
       - name: Add Android platform
         run: npx cap add android
-
+      - name: Install image tools
+        run: sudo apt-get update && sudo apt-get install -y imagemagick
+      - name: Set BLNK launcher icon
+        run: |
+          mkdir -p android/app/src/main/res/mipmap-mdpi android/app/src/main/res/mipmap-hdpi android/app/src/main/res/mipmap-xhdpi android/app/src/main/res/mipmap-xxhdpi android/app/src/main/res/mipmap-xxxhdpi
+          convert -background none logo.svg -resize 48x48 android/app/src/main/res/mipmap-mdpi/ic_launcher.png
+          convert -background none logo.svg -resize 72x72 android/app/src/main/res/mipmap-hdpi/ic_launcher.png
+          convert -background none logo.svg -resize 96x96 android/app/src/main/res/mipmap-xhdpi/ic_launcher.png
+          convert -background none logo.svg -resize 144x144 android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png
+          convert -background none logo.svg -resize 192x192 android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png
+          cp android/app/src/main/res/mipmap-mdpi/ic_launcher.png android/app/src/main/res/mipmap-mdpi/ic_launcher_round.png
+          cp android/app/src/main/res/mipmap-hdpi/ic_launcher.png android/app/src/main/res/mipmap-hdpi/ic_launcher_round.png
+          cp android/app/src/main/res/mipmap-xhdpi/ic_launcher.png android/app/src/main/res/mipmap-xhdpi/ic_launcher_round.png
+          cp android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png android/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.png
+          cp android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png android/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png
       - name: Sync web assets
         run: npx cap copy android
-
       - name: Build debug APK
         working-directory: android
         run: ./gradlew assembleDebug --no-daemon
-
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
