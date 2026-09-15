@@ -10,6 +10,7 @@ permissions:
 
 env:
   JAVA_VERSION: '21'
+  GRADLE_OPTS: '-Dorg.gradle.daemon=false -Dorg.gradle.jvmargs=-Xmx2g'
 
 jobs:
   build-android:
@@ -23,7 +24,7 @@ jobs:
         with:
           node-version: 20
       - name: Install dependencies
-        run: npm install
+        run: npm install --no-audit --no-fund
       - name: Prepare web bundle
         run: |
           rm -rf www
@@ -59,9 +60,20 @@ jobs:
           cp android/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml android/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml
       - name: Sync web assets
         run: npx cap copy android
-      - name: Build debug APK
+      - name: Build debug APK with retries
         working-directory: android
-        run: ./gradlew assembleDebug --no-daemon
+        run: |
+          set -e
+          for attempt in 1 2 3; do
+            echo "Gradle build attempt $attempt/3"
+            if ./gradlew assembleDebug --no-daemon --refresh-dependencies; then
+              exit 0
+            fi
+            if [ "$attempt" -lt 3 ]; then
+              sleep 20
+            fi
+          done
+          exit 1
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
