@@ -40,17 +40,23 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y imagemagick
       - name: Set BLNK launcher icon
         run: |
+          set -e
           mkdir -p android/app/src/main/res/mipmap-mdpi android/app/src/main/res/mipmap-hdpi android/app/src/main/res/mipmap-xhdpi android/app/src/main/res/mipmap-xxhdpi android/app/src/main/res/mipmap-xxxhdpi
-          convert -background none logo.svg -resize 48x48 android/app/src/main/res/mipmap-mdpi/ic_launcher.png
-          convert -background none logo.svg -resize 72x72 android/app/src/main/res/mipmap-hdpi/ic_launcher.png
-          convert -background none logo.svg -resize 96x96 android/app/src/main/res/mipmap-xhdpi/ic_launcher.png
-          convert -background none logo.svg -resize 144x144 android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png
-          convert -background none logo.svg -resize 192x192 android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png
+          mkdir -p android/app/src/main/res/mipmap-anydpi-v26 android/app/src/main/res/drawable-nodpi android/app/src/main/res/values
+          convert -background '#111111' logo.svg -resize 48x48 android/app/src/main/res/mipmap-mdpi/ic_launcher.png
+          convert -background '#111111' logo.svg -resize 72x72 android/app/src/main/res/mipmap-hdpi/ic_launcher.png
+          convert -background '#111111' logo.svg -resize 96x96 android/app/src/main/res/mipmap-xhdpi/ic_launcher.png
+          convert -background '#111111' logo.svg -resize 144x144 android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png
+          convert -background '#111111' logo.svg -resize 192x192 android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png
           cp android/app/src/main/res/mipmap-mdpi/ic_launcher.png android/app/src/main/res/mipmap-mdpi/ic_launcher_round.png
           cp android/app/src/main/res/mipmap-hdpi/ic_launcher.png android/app/src/main/res/mipmap-hdpi/ic_launcher_round.png
           cp android/app/src/main/res/mipmap-xhdpi/ic_launcher.png android/app/src/main/res/mipmap-xhdpi/ic_launcher_round.png
           cp android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png android/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.png
           cp android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png android/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png
+          convert -background none logo.svg -resize 360x360 -gravity center -extent 512x512 android/app/src/main/res/drawable-nodpi/blnk_logo.png
+          printf '%s\n' '<resources><color name="blnk_icon_background">#111111</color></resources>' > android/app/src/main/res/values/blnk_colors.xml
+          printf '%s\n' '<?xml version="1.0" encoding="utf-8"?><adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android"><background android:drawable="@color/blnk_icon_background"/><foreground android:drawable="@drawable/blnk_logo"/></adaptive-icon>' > android/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml
+          cp android/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml android/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml
       - name: Sync web assets
         run: npx cap copy android
       - name: Build debug APK
