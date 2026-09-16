@@ -1,1 +1,113 @@
-<!doctype html><html lang="ar" dir="rtl"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><link rel="icon" href="logo.svg"><title>BLNK — إدارة المنتجات</title><style>:root{font-family:Arial,system-ui,sans-serif;color:#111;background:#f3f3f3}*{box-sizing:border-box}body{margin:0}.wrap{max-width:1050px;margin:auto;padding:20px}.top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:18px}.logo{font-size:30px;font-weight:900}.muted{color:#666}.panel{background:#fff;border:1px solid #ddd;border-radius:18px;padding:18px;margin-bottom:16px}.toolbar{display:flex;gap:8px;flex-wrap:wrap}.button{border:0;border-radius:10px;padding:12px 16px;font-weight:800;cursor:pointer;text-decoration:none;display:inline-block}.dark{background:#111;color:#fff}.light{background:#eee;color:#111}.danger{background:#eee;color:#b00020}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.field{display:flex;flex-direction:column;gap:6px}.full{grid-column:1/-1}label{font-size:12px;font-weight:800}input,select,textarea{width:100%;border:1px solid #ccc;border-radius:10px;padding:12px;font:inherit}textarea{min-height:80px}.products{display:grid;gap:10px}.product{border:1px solid #ddd;border-radius:14px;padding:12px;display:grid;grid-template-columns:75px 1fr auto;gap:12px;align-items:center}.thumb{width:75px;height:90px;background:#eee;border-radius:10px;display:grid;place-items:center;font-weight:900;overflow:hidden}.thumb img{width:100%;height:100%;object-fit:cover}.meta{font-size:13px;color:#666;margin-top:3px}.actions{display:flex;gap:6px;flex-wrap:wrap}.check{display:flex;flex-direction:row;align-items:center;gap:7px}.check input{width:auto}.status{margin-top:10px;font-weight:700}.empty{text-align:center;padding:20px;color:#777}.preview{max-width:100px;max-height:100px;border-radius:10px;margin-top:8px}.hint{font-size:13px;line-height:1.6;background:#f7f7f7;border-radius:12px;padding:12px;margin-top:10px}@media(max-width:700px){.grid{grid-template-columns:1fr}.full{grid-column:auto}.product{grid-template-columns:60px 1fr}.thumb{width:60px;height:75px}.product .actions{grid-column:1/-1}.top{align-items:flex-start;flex-direction:column}}</style></head><body><div class="wrap"><div class="top"><div><div class="logo">BLNK</div><div class="muted">إدارة المنتجات — الموقع + APK</div></div><div class="toolbar"><a href="index.html" class="button light">المتجر</a></div></div><div class="panel" id="loginPanel"><h2>دخول الإدارة</h2><p>المخزون والمنتجات محفوظة في ملف مركزي على GitHub. بعد الحفظ، الموقع والـAPK يقرآن نفس الكتالوج.</p><input id="token" type="password" placeholder="GitHub Fine-grained token (Contents: Read & Write)"><div class="toolbar" style="margin-top:10px"><button class="button dark" onclick="connect()">فتح الإدارة</button></div><div class="hint">استخدم Fine-grained Personal Access Token للحساب الذي يملك المستودع، بصلاحية <b>Contents: Read and write</b> لهذا المستودع فقط. المفتاح يُحفظ على جهازك فقط.</div><div id="loginStatus" class="status"></div></div><div id="manager" hidden><div class="panel"><div class="top"><div><h2 style="margin:0">المنتجات</h2><div class="muted">أي حفظ هنا يحدّث الكتالوج المركزي. الموقع يلتقط التحديث تلقائيًا، والـAPK عند فتحه/تحديثه.</div></div><button class="button dark" onclick="newProduct()">+ إضافة منتج</button></div><div id="products" class="products"></div><div id="status" class="status"></div></div><div class="panel" id="editor" hidden><h2 id="editorTitle">إضافة منتج</h2><div class="grid"><div class="field"><label>اسم المنتج</label><input id="name" placeholder="BLNK Essential T-Shirt"></div><div class="field"><label>القسم</label><select id="category"><option value="tshirt">T-Shirt</option><option value="shirt">Shirt</option><option value="shorts">Shorts</option><option value="pants">Pants</option><option value="hoodie">Hoodie</option><option value="last">Last Piece</option></select></div><div class="field"><label>السعر بالجنيه</label><input id="price" type="number" min="0"></div><div class="field"><label>السعر القديم</label><input id="oldPrice" type="number" min="0"></div><div class="field"><label>المقاسات</label><input id="sizes" placeholder="M, L, XL, 2XL"></div><div class="field"><label>الألوان</label><input id="colors" placeholder="Black, White"></div><div class="field"><label>المخزون / القطع</label><input id="stock" type="number" min="0" value="0"></div><div class="field"><label>صورة المنتج من الموبايل</label><input id="imageFile" type="file" accept="image/*" onchange="previewImage()"><img id="preview" class="preview" hidden></div><div class="field full"><label>أو رابط الصورة</label><input id="image" placeholder="https://..."></div><div class="field full"><label>وصف قصير</label><textarea id="note"></textarea></div><label class="check"><input id="lastPieces" type="checkbox"> آخر قطع</label><label class="check"><input id="active" type="checkbox" checked> ظاهر في المتجر</label></div><div class="toolbar" style="margin-top:15px"><button class="button dark" onclick="saveProduct()">حفظ وتحديث الموقع + APK</button><button class="button light" onclick="closeEditor()">إلغاء</button></div></div></div></div><script>const OWNER='mediabogy-hue',REPO='tito-store',PATH='products.json';let products=[],editingId=null,token='';const $=id=>document.getElementById(id);function apiHeaders(){return{'Accept':'application/vnd.github+json','Authorization':'Bearer '+token,'X-GitHub-Api-Version':'2022-11-28','Content-Type':'application/json'}}async function connect(){token=$('token').value.trim();if(!token){$('loginStatus').textContent='أدخل GitHub token أولًا.';return}try{products=await loadProducts();localStorage.setItem('blnk_admin_token',token);$('loginPanel').hidden=true;$('manager').hidden=false;render()}catch(e){$('loginStatus').textContent='فشل الاتصال. تأكد من الـtoken وصلاحية Contents: Read and write.'}}async function loadProducts(){const r=await fetch(`https://api.github.com/repos/${OWNER}/${REPO}/contents/${PATH}`,{headers:apiHeaders(),cache:'no-store'});if(!r.ok)throw new Error('load');const d=await r.json();return JSON.parse(decodeURIComponent(escape(atob(d.content.replace(/\n/g,'')))))}function render(){const root=$('products');if(!products.length){root.innerHTML='<div class="empty">لا توجد منتجات.</div>';return}root.innerHTML=products.map(p=>`<div class="product"><div class="thumb">${p.image?`<img src="${p.image}" alt="">`:'BLNK'}</div><div><h3 style="margin:0">${esc(p.name)}</h3><div class="meta">EGP ${Number(p.price).toLocaleString()} · ${esc(p.category)} · المخزون ${p.stock??0}</div><div class="meta">${(p.sizes||[]).join(', ')} · ${(p.colors||[]).join(', ')}</div><div class="meta">${p.active?'ظاهر':'مخفي'}${p.lastPieces?' · آخر قطع':''}</div></div><div class="actions"><button class="button light" onclick="editProduct('${p.id}')">تعديل</button><button class="button danger" onclick="removeProduct('${p.id}')">حذف</button></div></div>`).join('')}function newProduct(){editingId=null;$('editorTitle').textContent='إضافة منتج';['name','price','oldPrice','sizes','colors','stock','image','note'].forEach(id=>$(id).value='');$('stock').value=0;$('lastPieces').checked=false;$('active').checked=true;$('preview').hidden=true;$('editor').hidden=false}function editProduct(id){const p=products.find(x=>x.id===id);if(!p)return;editingId=id;$('editorTitle').textContent='تعديل المنتج';$('name').value=p.name;$('category').value=p.category;$('price').value=p.price;$('oldPrice').value=p.oldPrice??'';$('sizes').value=(p.sizes||[]).join(', ');$('colors').value=(p.colors||[]).join(', ');$('stock').value=p.stock??0;$('image').value=p.image||'';$('note').value=p.note||'';$('lastPieces').checked=!!p.lastPieces;$('active').checked=p.active!==false;$('preview').hidden=!p.image;$('preview').src=p.image||'';$('editor').hidden=false}function closeEditor(){$('editor').hidden=true}function previewImage(){const f=$('imageFile').files[0];if(!f)return;compressImage(f).then(x=>{$('preview').src=x;$('preview').hidden=false})}function compressImage(file){return new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>{const im=new Image();im.onload=()=>{const max=1000,scale=Math.min(1,max/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=Math.round(im.width*scale);c.height=Math.round(im.height*scale);c.getContext('2d').drawImage(im,0,0,c.width,c.height);res(c.toDataURL('image/jpeg',.78))};im.onerror=rej;im.src=r.result};r.onerror=rej;r.readAsDataURL(file)})}async function saveProduct(){try{let image=$('image').value.trim();const f=$('imageFile').files[0];if(f)image=await compressImage(f);const id=editingId||('product-'+Date.now());const p={id,name:$('name').value.trim(),category:$('category').value,price:Number($('price').value||0),oldPrice:$('oldPrice').value?Number($('oldPrice').value):null,sizes:csv($('sizes').value),colors:csv($('colors').value),stock:Number($('stock').value||0),image,note:$('note').value.trim(),lastPieces:$('lastPieces').checked,active:$('active').checked};if(!p.name){$('status').textContent='اكتب اسم المنتج.';return}const i=products.findIndex(x=>x.id===id);if(i>=0)products[i]=p;else products.push(p);await pushProducts();closeEditor();render();$('status').textContent='✅ تم الحفظ. الموقع والـAPK سيقرآن التحديث من الكتالوج المركزي.'}catch(e){$('status').textContent='❌ فشل الحفظ. جرّب مرة أخرى وتأكد من صلاحية الـtoken.'}}async function pushProducts(){const get=await fetch(`https://api.github.com/repos/${OWNER}/${REPO}/contents/${PATH}`,{headers:apiHeaders(),cache:'no-store'});if(!get.ok)throw new Error('get');const old=await get.json();const content=btoa(unescape(encodeURIComponent(JSON.stringify(products,null,2))));const r=await fetch(`https://api.github.com/repos/${OWNER}/${REPO}/contents/${PATH}`,{method:'PUT',headers:apiHeaders(),body:JSON.stringify({message:'Update BLNK product catalog',content,sha:old.sha,branch:'main'})});if(!r.ok)throw new Error('put')}async function removeProduct(id){if(!confirm('حذف المنتج؟'))return;products=products.filter(p=>p.id!==id);await pushProducts();render();$('status').textContent='✅ تم الحذف وتحديث الكتالوج.'}function csv(v){return v.split(',').map(x=>x.trim()).filter(Boolean)}function esc(v){return String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}token=localStorage.getItem('blnk_admin_token')||'';if(token) $('token').value=token;</script></body></html>
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<link rel="icon" href="logo.svg">
+<title>BLNK — إدارة المنتجات</title>
+<style>
+:root{font-family:Arial,system-ui,sans-serif;color:#111;background:#f3f3f3}*{box-sizing:border-box}body{margin:0}.wrap{max-width:1050px;margin:auto;padding:20px}.top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:18px}.logo{font-size:30px;font-weight:900}.muted{color:#666}.panel{background:#fff;border:1px solid #ddd;border-radius:18px;padding:18px;margin-bottom:16px}.toolbar{display:flex;gap:8px;flex-wrap:wrap}.button{border:0;border-radius:10px;padding:12px 16px;font-weight:800;cursor:pointer;text-decoration:none;display:inline-block}.dark{background:#111;color:#fff}.light{background:#eee;color:#111}.danger{background:#eee;color:#b00020}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.field{display:flex;flex-direction:column;gap:6px}.full{grid-column:1/-1}label{font-size:12px;font-weight:800}input,select,textarea{width:100%;border:1px solid #ccc;border-radius:10px;padding:12px;font:inherit}textarea{min-height:80px}.products{display:grid;gap:10px}.product{border:1px solid #ddd;border-radius:14px;padding:12px;display:grid;grid-template-columns:75px 1fr auto;gap:12px;align-items:center}.thumb{width:75px;height:90px;background:#eee;border-radius:10px;display:grid;place-items:center;font-weight:900;overflow:hidden}.thumb img{width:100%;height:100%;object-fit:cover}.meta{font-size:13px;color:#666;margin-top:3px}.actions{display:flex;gap:6px;flex-wrap:wrap}.check{display:flex;flex-direction:row;align-items:center;gap:7px}.check input{width:auto}.status{margin-top:10px;font-weight:700}.empty{text-align:center;padding:20px;color:#777}.preview{max-width:100px;max-height:100px;border-radius:10px;margin-top:8px}.hint{font-size:13px;line-height:1.6;background:#f7f7f7;border-radius:12px;padding:12px;margin-top:10px}.ok{color:#087f23}.err{color:#b00020}@media(max-width:700px){.grid{grid-template-columns:1fr}.full{grid-column:auto}.product{grid-template-columns:60px 1fr}.thumb{width:60px;height:75px}.product .actions{grid-column:1/-1}.top{align-items:flex-start;flex-direction:column}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <div><div class="logo">BLNK</div><div class="muted">إدارة المنتجات — الموقع + APK</div></div>
+    <div class="toolbar"><a href="index.html" class="button light">المتجر</a></div>
+  </div>
+
+  <div class="panel" id="loginPanel">
+    <h2>دخول الإدارة</h2>
+    <p>الإدارة الآن لا تحتاج GitHub Token. كلمة مرور الإدارة تُرسل إلى الخادم فقط، والخادم هو الذي يملك صلاحية تحديث الكتالوج.</p>
+    <input id="adminKey" type="password" autocomplete="current-password" placeholder="كلمة مرور إدارة BLNK">
+    <div class="toolbar" style="margin-top:10px"><button class="button dark" onclick="connect()">فتح الإدارة</button></div>
+    <div class="hint">لن يتم حفظ كلمة المرور في المتصفح، ولن تحتاج إلى GitHub Token على الموبايل.</div>
+    <div id="loginStatus" class="status"></div>
+  </div>
+
+  <div id="manager" hidden>
+    <div class="panel">
+      <div class="top">
+        <div><h2 style="margin:0">المنتجات</h2><div class="muted">الحفظ يتم من خلال API آمن، ثم يُحدّث الكتالوج المركزي للموقع والـAPK.</div></div>
+        <button class="button dark" onclick="newProduct()">+ إضافة منتج</button>
+      </div>
+      <div id="products" class="products"></div>
+      <div id="status" class="status"></div>
+    </div>
+
+    <div class="panel" id="editor" hidden>
+      <h2 id="editorTitle">إضافة منتج</h2>
+      <div class="grid">
+        <div class="field"><label>اسم المنتج</label><input id="name" placeholder="BLNK Essential T-Shirt"></div>
+        <div class="field"><label>القسم</label><select id="category"><option value="tshirt">T-Shirt</option><option value="shirt">Shirt</option><option value="shorts">Shorts</option><option value="pants">Pants</option><option value="hoodie">Hoodie</option><option value="last">Last Piece</option></select></div>
+        <div class="field"><label>السعر بالجنيه</label><input id="price" type="number" min="0"></div>
+        <div class="field"><label>السعر القديم</label><input id="oldPrice" type="number" min="0"></div>
+        <div class="field"><label>المقاسات</label><input id="sizes" placeholder="M, L, XL, 2XL"></div>
+        <div class="field"><label>الألوان</label><input id="colors" placeholder="Black, White"></div>
+        <div class="field"><label>المخزون / القطع</label><input id="stock" type="number" min="0" value="0"></div>
+        <div class="field"><label>صورة المنتج من الموبايل</label><input id="imageFile" type="file" accept="image/*" onchange="previewImage()"><img id="preview" class="preview" hidden></div>
+        <div class="field full"><label>أو رابط الصورة</label><input id="image" placeholder="https://..."></div>
+        <div class="field full"><label>وصف قصير</label><textarea id="note"></textarea></div>
+        <label class="check"><input id="lastPieces" type="checkbox"> آخر قطع</label>
+        <label class="check"><input id="active" type="checkbox" checked> ظاهر في المتجر</label>
+      </div>
+      <div class="toolbar" style="margin-top:15px"><button class="button dark" onclick="saveProduct()">حفظ وتحديث الموقع + APK</button><button class="button light" onclick="closeEditor()">إلغاء</button></div>
+    </div>
+  </div>
+</div>
+
+<script>
+const API='/api/products';
+let products=[],editingId=null,adminKey='';
+const $=id=>document.getElementById(id);
+
+async function api(method='GET',body=null){
+  const headers={'Accept':'application/json'};
+  if(method!=='GET') headers['Content-Type']='application/json';
+  if(adminKey) headers['x-admin-key']=adminKey;
+  const r=await fetch(API,{method,headers,body:body?JSON.stringify(body):undefined,cache:'no-store'});
+  let data=null;try{data=await r.json()}catch{}
+  if(!r.ok) throw new Error(data?.error||'API error');
+  return data;
+}
+
+async function connect(){
+  adminKey=$('adminKey').value.trim();
+  if(!adminKey){$('loginStatus').textContent='أدخل كلمة مرور الإدارة أولًا.';return}
+  try{
+    products=await api('GET');
+    $('loginPanel').hidden=true;$('manager').hidden=false;render();
+  }catch(e){$('loginStatus').innerHTML='<span class="err">فشل الدخول. تأكد من كلمة مرور الإدارة وإعداد الخادم.</span>'}
+}
+
+function render(){
+  const root=$('products');
+  if(!products.length){root.innerHTML='<div class="empty">لا توجد منتجات.</div>';return}
+  root.innerHTML=products.map(p=>`<div class="product"><div class="thumb">${p.image?`<img src="${escAttr(p.image)}" alt="">`:'BLNK'}</div><div><h3 style="margin:0">${esc(p.name)}</h3><div class="meta">EGP ${Number(p.price).toLocaleString()} · ${esc(p.category)} · المخزون ${p.stock??0}</div><div class="meta">${(p.sizes||[]).map(esc).join(', ')} · ${(p.colors||[]).map(esc).join(', ')}</div><div class="meta">${p.active?'ظاهر':'مخفي'}${p.lastPieces?' · آخر قطع':''}</div></div><div class="actions"><button class="button light" onclick="editProduct('${escAttr(p.id)}')">تعديل</button><button class="button danger" onclick="removeProduct('${escAttr(p.id)}')">حذف</button></div></div>`).join('')
+}
+
+function newProduct(){editingId=null;$('editorTitle').textContent='إضافة منتج';['name','price','oldPrice','sizes','colors','stock','image','note'].forEach(id=>$(id).value='');$('stock').value=0;$('lastPieces').checked=false;$('active').checked=true;$('preview').hidden=true;$('imageFile').value='';$('editor').hidden=false}
+function editProduct(id){const p=products.find(x=>x.id===id);if(!p)return;editingId=id;$('editorTitle').textContent='تعديل المنتج';$('name').value=p.name;$('category').value=p.category;$('price').value=p.price;$('oldPrice').value=p.oldPrice??'';$('sizes').value=(p.sizes||[]).join(', ');$('colors').value=(p.colors||[]).join(', ');$('stock').value=p.stock??0;$('image').value=p.image||'';$('note').value=p.note||'';$('lastPieces').checked=!!p.lastPieces;$('active').checked=p.active!==false;$('preview').hidden=!p.image;$('preview').src=p.image||'';$('imageFile').value='';$('editor').hidden=false}
+function closeEditor(){$('editor').hidden=true}
+function previewImage(){const f=$('imageFile').files[0];if(!f)return;compressImage(f).then(x=>{$('preview').src=x;$('preview').hidden=false})}
+function compressImage(file){return new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>{const im=new Image();im.onload=()=>{const max=1000,scale=Math.min(1,max/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=Math.round(im.width*scale);c.height=Math.round(im.height*scale);c.getContext('2d').drawImage(im,0,0,c.width,c.height);res(c.toDataURL('image/jpeg',.78))};im.onerror=rej;im.src=r.result};r.onerror=rej;r.readAsDataURL(file)})}
+
+async function saveProduct(){
+  try{
+    let image=$('image').value.trim();const f=$('imageFile').files[0];if(f)image=await compressImage(f);
+    const id=editingId||('product-'+Date.now());
+    const p={id,name:$('name').value.trim(),category:$('category').value,price:Number($('price').value||0),oldPrice:$('oldPrice').value?Number($('oldPrice').value):null,sizes:csv($('sizes').value),colors:csv($('colors').value),stock:Number($('stock').value||0),image,note:$('note').value.trim(),lastPieces:$('lastPieces').checked,active:$('active').checked};
+    if(!p.name){$('status').textContent='اكتب اسم المنتج.';return}
+    const i=products.findIndex(x=>x.id===id);if(i>=0)products[i]=p;else products.push(p);
+    const result=await api('PUT',products);products=result.products||products;closeEditor();render();$('status').innerHTML='<span class="ok">✅ تم الحفظ. الكتالوج المركزي اتحدث.</span>';
+  }catch(e){$('status').innerHTML='<span class="err">❌ '+esc(e.message)+'</span>'}
+}
+
+async function removeProduct(id){if(!confirm('حذف المنتج؟'))return;try{products=products.filter(p=>p.id!==id);const result=await api('PUT',products);products=result.products||products;render();$('status').innerHTML='<span class="ok">✅ تم الحذف وتحديث الكتالوج.</span>'}catch(e){$('status').innerHTML='<span class="err">❌ '+esc(e.message)+'</span>'}}
+function csv(v){return v.split(',').map(x=>x.trim()).filter(Boolean)}
+function esc(v){return String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
+function escAttr(v){return esc(v).replace(/`/g,'&#096;')}
+</script>
+</body>
+</html>
