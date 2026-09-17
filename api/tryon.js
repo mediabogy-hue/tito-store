@@ -1,8 +1,18 @@
 export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
-  const apiKey = process.env.FASHN_API_KEY || process.env.FASHN_API_TOKEN;
-  if (!apiKey) return res.status(500).json({ error: 'FASHN_API_KEY is not configured on Vercel.' });
+  // Vercel env vars are case-sensitive. Support the official name plus the
+  // lowercase/legacy names so an existing deployment does not fail silently.
+  const apiKey = (
+    process.env.FASHN_API_KEY ||
+    process.env.fashn_api_key ||
+    process.env.FASHN_API_TOKEN
+  )?.trim();
+  if (!apiKey) {
+    return res.status(500).json({
+      error: 'FASHN_API_KEY is missing from the Vercel runtime. Add it to the deployed environment and redeploy.'
+    });
+  }
 
   try {
     const { model_image, product_image, prompt } = req.body || {};
@@ -29,7 +39,11 @@ export default async function handler(req, res) {
 
     const data = await response.json();
     if (!response.ok) {
-      return res.status(response.status).json({ error: data?.error || data?.message || 'FASHN request failed.' });
+      const raw = data?.error || data?.message || 'FASHN request failed.';
+      const message = response.status === 401
+        ? 'FASHN rejected the API key (UnauthorizedAccess). Check that the Vercel value is the active FASHN API key, with no quotes/spaces, then redeploy.'
+        : raw;
+      return res.status(response.status).json({ error: message });
     }
 
     return res.status(200).json({ id: data.id, error: data.error || null });
