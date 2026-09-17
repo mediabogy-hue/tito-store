@@ -21,6 +21,15 @@ export default async function handler(req, res) {
       return res.status(200).json(products);
     }
 
+    // Admin login check. GET stays public so the storefront can read products.
+    if (req.method === 'POST') {
+      const key = String(req.body?.key || '');
+      if (!process.env.ADMIN_KEY || key !== process.env.ADMIN_KEY) {
+        return res.status(401).json({ error: 'Invalid admin password' });
+      }
+      return res.status(200).json({ ok: true });
+    }
+
     if (req.method !== 'PUT') {
       return res.status(405).json({ error: 'Method not allowed' });
     }
