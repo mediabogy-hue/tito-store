@@ -1,26 +1,5 @@
 [
   {
-    "id": "summer-shirt",
-    "name": "Summer Shirt",
-    "category": "shirt",
-    "price": 349,
-    "oldPrice": null,
-    "sizes": [
-      "M",
-      "L",
-      "XL"
-    ],
-    "colors": [
-      "White",
-      "Black"
-    ],
-    "stock": 0,
-    "image": "",
-    "note": "Lightweight / easy fit",
-    "lastPieces": false,
-    "active": true
-  },
-  {
     "id": "everyday-shorts",
     "name": "Everyday Shorts",
     "category": "shorts",
