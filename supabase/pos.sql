@@ -14,7 +14,7 @@ begin
  end if;
  insert into public.invoices(id,invoice_number,customer_id,pos_reference,subtotal,discount,total,payment_method,store) values(v_invoice,v_number,p_customer_id,'POS-'||v_invoice,v_sub,greatest(0,coalesce(p_discount,0)),v_total,p_payment_method,'BLNK');
  for x in select * from jsonb_array_elements(p_items) loop
-  insert into public.invoice_items(invoice_id,product_id,product_name,quantity,unit_price) values(v_invoice,x->>'id',x->>'name',(x->>'qty')::integer,(x->>'price')::numeric);
+  insert into public.invoice_items(invoice_id,product_id,product_name,size,color,quantity,unit_price) values(v_invoice,x->>'id',x->>'name',x->>'size',x->>'color',(x->>'qty')::integer,(x->>'price')::numeric);
  end loop;
  return jsonb_build_object('invoice_id',v_invoice,'invoice_number',v_number,'total',v_total);
 end $$;
