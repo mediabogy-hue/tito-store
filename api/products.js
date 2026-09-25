@@ -34,8 +34,24 @@ export default async function handler(req, res) {
       return res.status(405).json({ error: 'Method not allowed' });
     }
 
+    // Accept the new Supabase BLNK Admin session. Keep ADMIN_KEY as a legacy fallback.
+    const bearer = String(req.headers.authorization || '');
+    let authorized = false;
+    if (bearer.startsWith('Bearer ') && process.env.SUPABASE_URL && process.env.SUPABASE_PUBLISHABLE_KEY) {
+      const token = bearer.slice(7);
+      const rpc = await fetch(process.env.SUPABASE_URL + '/rest/v1/rpc/is_admin', {
+        method: 'POST',
+        headers: {
+          apikey: process.env.SUPABASE_PUBLISHABLE_KEY,
+          Authorization: 'Bearer ' + token,
+          'Content-Type': 'application/json'
+        },
+        body: '{}'
+      });
+      if (rpc.ok) authorized = (await rpc.json()) === true;
+    }
     const adminKey = req.headers['x-admin-key'];
-    if (!process.env.ADMIN_KEY || adminKey !== process.env.ADMIN_KEY) {
+    if (!authorized && (!process.env.ADMIN_KEY || adminKey !== process.env.ADMIN_KEY)) {
       return res.status(401).json({ error: 'Unauthorized' });
     }
     if (!process.env.GITHUB_TOKEN) {
