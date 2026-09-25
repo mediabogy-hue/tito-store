@@ -40,7 +40,16 @@ export default async function handler(req, res) {
       body: form
     });
     const data = await response.json();
-    if (!response.ok) return res.status(response.status).json({ error: data?.error?.message || 'OpenAI image edit failed.' });
+    if (!response.ok) {
+      const code = data?.error?.code || '';
+      const raw = data?.error?.message || '';
+      const billing = code === 'credit_balance_exhausted' || /credits|quota|billing|spend limit/i.test(raw);
+      return res.status(response.status).json({
+        error: billing
+          ? 'الخدمة غير متاحة مؤقتًا، حاول مرة أخرى لاحقًا.'
+          : 'تعذر تنفيذ تجربة المنتج الآن، حاول مرة أخرى.'
+      });
+    }
     const b64 = data?.data?.[0]?.b64_json;
     if (!b64) return res.status(502).json({ error: 'OpenAI did not return an image.' });
     return res.status(200).json({ output: `data:image/jpeg;base64,${b64}` });
