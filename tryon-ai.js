@@ -26,11 +26,11 @@
     el.id = 'blnkAiTryOn';
     el.className = 'blnk-ai-tryon';
     el.innerHTML = `<div class="blnk-ai-card">
-      <div class="blnk-ai-head"><h3>👕 ${AR() ? 'شوف المنتج عليك' : 'SEE IT ON YOU'}</h3><button class="blnk-ai-close" type="button">×</button></div>
+      <div class="blnk-ai-head"><h3>👕 ${AR() ? 'جرب المنتج' : 'TRY IT ON'}</h3><button class="blnk-ai-close" type="button">×</button></div>
       <p>${AR() ? 'ارفع صورتك، والـAI هيحط المنتج عليك.' : 'Upload your photo and AI will place the product on you.'}</p>
       <label class="blnk-ai-upload">📷 ${AR() ? 'اختار صورتك' : 'Choose your photo'}<input id="blnkAiPhoto" type="file" accept="image/*"></label>
       <div class="blnk-ai-preview" id="blnkAiPreview"><span>${AR() ? 'الصورة هتظهر هنا' : 'Your photo will appear here'}</span></div>
-      <div class="blnk-ai-actions"><button class="button button-dark" id="blnkAiRun" type="button" disabled>${AR() ? 'جرّب المنتج بالـAI' : 'TRY ON WITH AI'}</button></div>
+      <div class="blnk-ai-actions"><button class="button button-dark" id="blnkAiRun" type="button" disabled>${AR() ? 'جرب المنتج' : 'TRY IT ON'}</button></div>
       <div class="blnk-ai-status" id="blnkAiStatus"></div>
       <div class="blnk-ai-loading" id="blnkAiLoading">⏳ ${AR() ? 'الـAI بيجهز الصورة…' : 'AI is generating your look…'}</div>
       <div class="blnk-ai-result" id="blnkAiResult"><div class="blnk-ai-preview"><img id="blnkAiResultImg" alt="BLNK AI try-on result"></div><div class="blnk-ai-actions"><a class="button button-dark" id="blnkAiSave" download="blnk-ai-tryon.jpg">${AR() ? 'احفظ الصورة عندك' : 'SAVE TO YOUR DEVICE'}</a><button class="button button-light" id="blnkAiAgain" type="button">${AR() ? 'جرّب صورة تانية' : 'TRY ANOTHER PHOTO'}</button></div><p class="blnk-ai-note">${AR() ? 'الصورة الشخصية والنتيجة مش بيتحفظوا في بروفايل BLNK أو قاعدة بيانات العملاء. النتيجة بتفضل عندك لو حفظتها.' : 'Your photo and result are not saved to your BLNK customer profile or customer database.'}</p></div>
@@ -89,10 +89,10 @@
     loading.classList.add('show'); result.classList.remove('show'); status.textContent = '';
     el.querySelector('#blnkAiRun').disabled = true;
     try {
-      const r = await fetch('/api/tryon', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({ model_image: photoData, product_image: currentProduct.image, prompt: `Fashion virtual try-on. Preserve the person's face, body identity, pose and background. Accurately fit this BLNK garment. Product: ${currentProduct.name || 'BLNK garment'}.` }) });
+      const r = await fetch('/api/tryon', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({ model_image: photoData, product_image: currentProduct.image, product_name: currentProduct.name || 'BLNK garment' }) });
       const d = await r.json();
-      if (!r.ok || !d.id) throw new Error(d.error || 'Could not start AI try-on');
-      const output = firstOutput(await poll(d.id));
+      if (!r.ok) throw new Error(d.error || 'Could not generate AI try-on');
+      const output = firstOutput(d.output);
       if (!output) throw new Error('No image returned');
       resultImg.src = output;
       save.href = output;
