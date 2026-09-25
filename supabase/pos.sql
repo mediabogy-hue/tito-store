@@ -120,3 +120,49 @@ begin
 end $$;
 revoke all on function public.admin_pos_dashboard() from public;
 grant execute on function public.admin_pos_dashboard() to authenticated;
+
+
+-- BLNK POS phase 3: targets, shifts and period reports
+create table if not exists public.sales_targets(
+ id uuid primary key default gen_random_uuid(), period_start date not null, period_end date not null,
+ target_amount numeric(12,2) not null check(target_amount>=0), created_at timestamptz not null default now()
+);
+create table if not exists public.pos_shifts(
+ id uuid primary key default gen_random_uuid(), user_id uuid not null references auth.users(id),
+ opened_at timestamptz not null default now(), closed_at timestamptz, opening_cash numeric(12,2) not null default 0,
+ closing_cash numeric(12,2), status text not null default 'open'
+);
+alter table public.sales_targets enable row level security; alter table public.pos_shifts enable row level security;
+revoke all on public.sales_targets,public.pos_shifts from anon,authenticated;
+
+create or replace function public.admin_set_sales_target(p_start date,p_end date,p_target numeric)
+returns void language plpgsql security definer set search_path=public as $$
+begin if not public.is_admin() then raise exception 'FORBIDDEN'; end if;
+ insert into public.sales_targets(period_start,period_end,target_amount) values(p_start,p_end,greatest(0,p_target)); end $$;
+grant execute on function public.admin_set_sales_target(date,date,numeric) to authenticated;
+
+create or replace function public.pos_open_shift(p_opening_cash numeric default 0)
+returns uuid language plpgsql security definer set search_path=public as $$
+declare v uuid;
+begin if not public.is_admin() then raise exception 'FORBIDDEN'; end if;
+ if exists(select 1 from public.pos_shifts where user_id=auth.uid() and status='open') then raise exception 'SHIFT_ALREADY_OPEN'; end if;
+ insert into public.pos_shifts(user_id,opening_cash) values(auth.uid(),greatest(0,p_opening_cash)) returning id into v; return v; end $$;
+grant execute on function public.pos_open_shift(numeric) to authenticated;
+
+create or replace function public.pos_close_shift(p_closing_cash numeric)
+returns void language plpgsql security definer set search_path=public as $$
+begin if not public.is_admin() then raise exception 'FORBIDDEN'; end if;
+ update public.pos_shifts set closing_cash=p_closing_cash,closed_at=now(),status='closed' where user_id=auth.uid() and status='open';
+ if not found then raise exception 'NO_OPEN_SHIFT'; end if; end $$;
+grant execute on function public.pos_close_shift(numeric) to authenticated;
+
+create or replace function public.admin_sales_report(p_from timestamptz,p_to timestamptz)
+returns jsonb language plpgsql security definer set search_path=public as $$
+declare r jsonb; v_target numeric;
+begin if not public.is_admin() then raise exception 'FORBIDDEN'; end if;
+ select coalesce(sum(target_amount),0) into v_target from public.sales_targets where period_start>=p_from::date and period_end<=p_to::date;
+ select jsonb_build_object(
+ 'sales',coalesce(sum(total),0),'invoices',count(*),'atv',coalesce(avg(total),0),'target',v_target,
+ 'achievement',case when v_target>0 then coalesce(sum(total),0)/v_target*100 else 0 end
+ ) into r from public.invoices where created_at>=p_from and created_at<p_to; return r; end $$;
+grant execute on function public.admin_sales_report(timestamptz,timestamptz) to authenticated;
