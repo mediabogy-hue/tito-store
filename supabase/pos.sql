@@ -99,3 +99,24 @@ begin
 end $;
 revoke all on function public.pos_checkout(uuid,jsonb,numeric,text) from public;
 grant execute on function public.pos_checkout(uuid,jsonb,numeric,text) to authenticated;
+
+-- POS dashboard metrics
+create or replace function public.admin_pos_dashboard()
+returns jsonb language plpgsql security definer set search_path=public as $$
+declare r jsonb;
+begin
+ if not public.is_admin() then raise exception 'FORBIDDEN'; end if;
+ select jsonb_build_object(
+  'sales_today',coalesce((select sum(total) from public.invoices where created_at>=date_trunc('day',now())),0),
+  'invoices_today',(select count(*) from public.invoices where created_at>=date_trunc('day',now())),
+  'items_today',coalesce((select sum(ii.quantity) from public.invoice_items ii join public.invoices i on i.id=ii.invoice_id where i.created_at>=date_trunc('day',now())),0),
+  'atv',coalesce((select avg(total) from public.invoices where created_at>=date_trunc('day',now())),0),
+  'upt',coalesce((select sum(ii.quantity)::numeric/nullif(count(distinct i.id),0) from public.invoice_items ii join public.invoices i on i.id=ii.invoice_id where i.created_at>=date_trunc('day',now())),0),
+  'asp',coalesce((select sum(i.total)/nullif(sum(ii.quantity),0) from public.invoice_items ii join public.invoices i on i.id=ii.invoice_id where i.created_at>=date_trunc('day',now())),0),
+  'low_stock',coalesce((select jsonb_agg(jsonb_build_object('product_id',product_id,'stock',stock) order by stock) from public.inventory where stock<=3),'[]'::jsonb),
+  'top_products',coalesce((select jsonb_agg(t) from (select ii.product_name,sum(ii.quantity) qty,sum(ii.quantity*ii.unit_price) sales from public.invoice_items ii join public.invoices i on i.id=ii.invoice_id where i.created_at>=date_trunc('day',now()) group by ii.product_name order by qty desc limit 5)t),'[]'::jsonb)
+ ) into r;
+ return r;
+end $$;
+revoke all on function public.admin_pos_dashboard() from public;
+grant execute on function public.admin_pos_dashboard() to authenticated;
