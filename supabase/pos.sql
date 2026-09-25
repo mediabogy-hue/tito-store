@@ -16,7 +16,8 @@ begin
  for x in select * from jsonb_array_elements(p_items) loop
   insert into public.invoice_items(invoice_id,product_id,product_name,size,color,quantity,unit_price) values(v_invoice,x->>'id',x->>'name',x->>'size',x->>'color',(x->>'qty')::integer,(x->>'price')::numeric);
  end loop;
- return jsonb_build_object('invoice_id',v_invoice,'invoice_number',v_number,'total',v_total);
+ update public.profiles set points=points+floor(v_total/100)::integer,updated_at=now() where id=p_customer_id;
+ return jsonb_build_object('invoice_id',v_invoice,'invoice_number',v_number,'total',v_total,'points_earned',floor(v_total/100)::integer);
 end $$;
 revoke all on function public.pos_checkout(uuid,jsonb,numeric,text) from public;
 grant execute on function public.pos_checkout(uuid,jsonb,numeric,text) to authenticated;
