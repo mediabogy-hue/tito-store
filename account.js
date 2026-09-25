@@ -28,5 +28,16 @@
   $('#logoutBtn').onclick=()=>sb.auth.signOut();
  }
  async function render(){if(!session){$('#accountState').innerHTML=authView();const form=$('#loginForm'),msg=$('#authMsg');form.onsubmit=async e=>{e.preventDefault();const d=new FormData(form);const {error}=await sb.auth.signInWithPassword({email:d.get('email'),password:d.get('password')});msg.textContent=error?'بيانات الدخول غير صحيحة.':''};$('#signupBtn').onclick=async()=>{const d=new FormData(form);if(!d.get('email')||!d.get('password')){msg.textContent='اكتب البريد وكلمة المرور الأول.';return}const {error}=await sb.auth.signUp({email:d.get('email'),password:d.get('password')});msg.textContent=error?error.message:'تم إنشاء الحساب. لو مطلوب تأكيد بريد افتح رسالة التأكيد.'};return}await dashboard()}
+ window.BLNKAccount={
+  getSession:()=>session,
+  reserveTryOn:async(productId)=>{
+    if(!sb||!session) throw new Error('LOGIN_REQUIRED');
+    const {data,error}=await sb.rpc('reserve_tryon',{p_product_id:String(productId||'')});
+    if(error) throw error;
+    return data;
+  },
+  completeTryOn:async(id)=>{if(!sb||!session)return;const {error}=await sb.rpc('complete_tryon',{p_transaction_id:id});if(error)throw error;},
+  refundTryOn:async(id)=>{if(!sb||!session)return;const {error}=await sb.rpc('refund_tryon',{p_transaction_id:id});if(error)throw error;}
+ };
  document.addEventListener('DOMContentLoaded',boot);
 })();
