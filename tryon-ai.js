@@ -87,18 +87,31 @@
     const save = el.querySelector('#blnkAiSave');
     if (!photoData || !currentProduct?.image) return;
     loading.classList.add('show'); result.classList.remove('show'); status.textContent = '';
+    let walletTxn = null;
     el.querySelector('#blnkAiRun').disabled = true;
     try {
+      if(!window.BLNKAccount?.getSession?.()) throw new Error(AR() ? 'سجّل دخولك في حساب BLNK الأول علشان تستخدم جرب المنتج.' : 'Sign in to your BLNK account first.');
+      try {
+        walletTxn = await window.BLNKAccount.reserveTryOn(currentProduct.id);
+      } catch(e) {
+        const m=String(e?.message||'');
+        if(m.includes('INSUFFICIENT_BALANCE')) throw new Error(AR() ? 'رصيد BLNK غير كافٍ لتجربة المنتج.' : 'Your BLNK balance is not enough for Try It On.');
+        if(m.includes('AUTH_REQUIRED')) throw new Error(AR() ? 'سجّل دخولك الأول.' : 'Please sign in first.');
+        throw e;
+      }
+      status.textContent = AR() ? `تم حجز ${walletTxn?.charge||0} جنيه من رصيدك للتجربة.` : `EGP ${walletTxn?.charge||0} reserved for this try-on.`;
       const r = await fetch('/api/tryon', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({ model_image: photoData, product_image: currentProduct.image, product_name: currentProduct.name || 'BLNK garment' }) });
       const d = await r.json();
       if (!r.ok) throw new Error(d.error || 'Could not generate AI try-on');
       const output = firstOutput(d.output);
       if (!output) throw new Error('No image returned');
+      if(walletTxn?.transaction_id) await window.BLNKAccount.completeTryOn(walletTxn.transaction_id);
       resultImg.src = output;
       save.href = output;
       result.classList.add('show');
       status.textContent = AR() ? 'تم! دي النتيجة بتاعتك.' : 'Done! Here is your result.';
     } catch (e) {
+      if(walletTxn?.transaction_id){try{await window.BLNKAccount.refundTryOn(walletTxn.transaction_id)}catch(_e){}}
       status.textContent = e.message || (AR() ? 'حصل خطأ، جرّب تاني.' : 'Something went wrong.');
     } finally {
       loading.classList.remove('show');
