@@ -57,7 +57,7 @@ create or replace function public.admin_inventory()
 returns table(product_id text,stock integer)
 language sql security definer set search_path=public as $$
  select i.product_id,i.stock from public.inventory i where public.is_admin()
-$;
+$$;
 grant execute on function public.admin_inventory() to authenticated;
 
 create or replace function public.pos_checkout(p_customer_id uuid,p_items jsonb,p_discount numeric default 0,p_payment_method text default 'cash')
