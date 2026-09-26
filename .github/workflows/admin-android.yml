@@ -25,7 +25,14 @@ jobs:
           mkdir -p www
           cp styles.css logo.svg manifest.webmanifest www/
           cp operations.html www/index.html
-          sed -i "s#href=\"/\"#href=\"index.html\"#g; s#fetch('/api/public-config').then(r=>r.json())#Promise.resolve({supabaseUrl:'https://pdgbifhdskgosxgejwvk.supabase.co',supabasePublishableKey:'sb_publishable_Hkigj8Wcm0UfBwHAAEnxow_8wyofL2c'})#g" www/index.html
+          sed -i 's#href="/"#href="index.html"#g' www/index.html
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path("www/index.html")
+          s=p.read_text()
+          s=s.replace("const cfg=await fetch('/api/public-config').then(r=>r.json()),sb=", "const cfg={supabaseUrl:'https://pdgbifhdskgosxgejwvk.supabase.co',supabasePublishableKey:'sb_publishable_Hkigj8Wcm0UfBwHAAEnxow_8wyofL2c'},sb=")
+          p.write_text(s)
+          PY
           cp admin.html admin.js customers-admin.html balance-admin.html orders-admin.html pos.html pos.js sales-dashboard.html offers-admin.html www/
       - name: Configure admin app
         run: |
