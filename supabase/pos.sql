@@ -166,3 +166,21 @@ begin if not public.is_admin() then raise exception 'FORBIDDEN'; end if;
  'achievement',case when v_target>0 then coalesce(sum(total),0)/v_target*100 else 0 end
  ) into r from public.invoices where created_at>=p_from and created_at<p_to; return r; end $$;
 grant execute on function public.admin_sales_report(timestamptz,timestamptz) to authenticated;
+
+
+-- Reporting v2: reliable date-based reporting including POS + app orders
+create or replace function public.admin_sales_report_v2(p_from date,p_to date)
+returns jsonb language plpgsql security definer set search_path=public as $$
+declare v_pos numeric:=0; v_app numeric:=0; v_inv bigint:=0; v_orders bigint:=0; v_items numeric:=0; v_target numeric:=0;
+begin
+ if not public.is_admin() then raise exception 'FORBIDDEN'; end if;
+ if p_from is null or p_to is null or p_to<p_from then raise exception 'INVALID_DATE_RANGE'; end if;
+ select coalesce(sum(total),0),count(*) into v_pos,v_inv from public.invoices where created_at::date between p_from and p_to;
+ select coalesce(sum(total),0),count(*) into v_app,v_orders from public.orders where created_at::date between p_from and p_to and status<>'cancelled';
+ select coalesce(sum(ii.quantity),0) into v_items from public.invoice_items ii join public.invoices i on i.id=ii.invoice_id where i.created_at::date between p_from and p_to;
+ select v_items+coalesce((select sum(oi.quantity) from public.order_items oi join public.orders o on o.id=oi.order_id where o.created_at::date between p_from and p_to and o.status<>'cancelled'),0) into v_items;
+ select coalesce(sum(target_amount),0) into v_target from public.sales_targets where period_start<=p_to and period_end>=p_from;
+ return jsonb_build_object('sales',v_pos+v_app,'pos_sales',v_pos,'app_sales',v_app,'transactions',v_inv+v_orders,'pos_invoices',v_inv,'app_orders',v_orders,'items',v_items,'atv',case when v_inv+v_orders>0 then (v_pos+v_app)/(v_inv+v_orders) else 0 end,'asp',case when v_items>0 then (v_pos+v_app)/v_items else 0 end,'upt',case when v_inv+v_orders>0 then v_items/(v_inv+v_orders) else 0 end,'target',v_target,'achievement',case when v_target>0 then (v_pos+v_app)/v_target*100 else 0 end);
+end $$;
+revoke all on function public.admin_sales_report_v2(date,date) from public;
+grant execute on function public.admin_sales_report_v2(date,date) to authenticated;
