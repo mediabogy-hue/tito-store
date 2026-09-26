@@ -14,3 +14,7 @@ create or replace function public.admin_orders() returns table(id uuid,order_num
 grant execute on function public.admin_orders() to authenticated;
 create or replace function public.admin_set_order_status(p_order_id uuid,p_status text) returns void language plpgsql security definer set search_path=public as $$ begin if not public.is_admin() then raise exception 'FORBIDDEN'; end if; if p_status not in ('preparing','ready_to_ship','shipped','out_for_delivery','delivered','cancelled') then raise exception 'INVALID_STATUS'; end if; update public.orders set status=p_status,updated_at=now() where id=p_order_id; end $$;
 grant execute on function public.admin_set_order_status(uuid,text) to authenticated;
+
+
+-- Current live catalog seed. Admin catalog sync will keep this table authoritative.
+insert into public.store_products(id,name,price,active,updated_at) values('everyday-shorts','Everyday t-shirt',350,true,now()) on conflict(id) do update set name=excluded.name,price=excluded.price,active=excluded.active,updated_at=now();
