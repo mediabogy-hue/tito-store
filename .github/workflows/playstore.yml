@@ -1,0 +1,41 @@
+name: BLNK Play Store AAB
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build-aab:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm install --no-audit --no-fund
+      - name: Prepare web bundle
+        run: |
+          rm -rf www
+          mkdir -p www
+          cp index.html app.js styles.css products.js products.json i18n.js account.html account.js account-badge.js tryon-ai.js tryon.css logo.svg manifest.webmanifest www/
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - name: Add Android
+        run: npx cap add android
+      - name: Target Android 16
+        run: |
+          sed -i 's/compileSdkVersion = [0-9]*/compileSdkVersion = 36/' android/variables.gradle
+          sed -i 's/targetSdkVersion = [0-9]*/targetSdkVersion = 36/' android/variables.gradle
+          sed -i 's/versionCode [0-9]*/versionCode 1/' android/app/build.gradle
+          sed -i 's/versionName "[^"]*"/versionName "1.0.0"/' android/app/build.gradle
+      - run: npx cap copy android
+      - name: Build AAB
+        working-directory: android
+        run: ./gradlew bundleRelease --no-daemon
+      - uses: actions/upload-artifact@v4
+        with:
+          name: BLNK-PlayStore-AAB
+          path: android/app/build/outputs/bundle/release/app-release.aab
+          if-no-files-found: error
+          retention-days: 30
