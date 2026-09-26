@@ -5,6 +5,8 @@
   "rewrites": [
     { "source": "/", "destination": "/index.html" },
     { "source": "/suppliers-admin", "destination": "/suppliers-admin.html" },
-    { "source": "/supplier", "destination": "/supplier-portal.html" }
+    { "source": "/suppliers-admin.html", "destination": "/suppliers-admin.html" },
+    { "source": "/supplier", "destination": "/supplier-portal.html" },
+    { "source": "/supplier-portal", "destination": "/supplier-portal.html" }
   ]
 }
