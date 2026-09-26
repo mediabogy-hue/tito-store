@@ -19,3 +19,12 @@ begin
  update public.profiles set city=p_city,address=p_address,whatsapp=p_whatsapp,updated_at=now() where id=auth.uid();
 end $$;
 grant execute on function public.update_my_contact(text,text,text) to authenticated;
+
+create or replace function public.handle_new_user()
+returns trigger language plpgsql security definer set search_path=public as $$
+begin
+ insert into public.profiles(id,full_name,phone,whatsapp,city,address,style_profile)
+ values(new.id,new.raw_user_meta_data->>'full_name',nullif(new.raw_user_meta_data->>'phone',''),nullif(new.raw_user_meta_data->>'whatsapp',''),new.raw_user_meta_data->>'city',new.raw_user_meta_data->>'address',coalesce(new.raw_user_meta_data->'style_profile','{}'::jsonb))
+ on conflict(id) do update set full_name=excluded.full_name,phone=coalesce(excluded.phone,public.profiles.phone),whatsapp=coalesce(excluded.whatsapp,public.profiles.whatsapp),city=excluded.city,address=excluded.address,style_profile=excluded.style_profile,updated_at=now();
+ return new;
+end $$;
