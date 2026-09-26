@@ -18,3 +18,28 @@ grant execute on function public.admin_set_order_status(uuid,text) to authentica
 
 -- Current live catalog seed. Admin catalog sync will keep this table authoritative.
 insert into public.store_products(id,name,price,active,updated_at) values('everyday-shorts','Everyday t-shirt',350,true,now()) on conflict(id) do update set name=excluded.name,price=excluded.price,active=excluded.active,updated_at=now();
+
+
+-- Compatibility fix: ensure inventory exists even if POS inventory migration was not run.
+create table if not exists public.inventory(
+  product_id text primary key,
+  stock integer not null default 0 check(stock>=0),
+  updated_at timestamptz not null default now()
+);
+create table if not exists public.inventory_movements(
+  id uuid primary key default gen_random_uuid(),
+  product_id text not null,
+  quantity integer not null,
+  movement_type text not null,
+  reference_id text,
+  created_at timestamptz not null default now()
+);
+alter table public.inventory enable row level security;
+alter table public.inventory_movements enable row level security;
+revoke all on public.inventory from anon,authenticated;
+revoke all on public.inventory_movements from anon,authenticated;
+
+-- Seed inventory from current trusted store catalog when missing.
+insert into public.inventory(product_id,stock,updated_at)
+select id, 100, now() from public.store_products
+on conflict(product_id) do nothing;
