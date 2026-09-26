@@ -1,0 +1,53 @@
+name: BLNK Admin Android APK
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  JAVA_VERSION: '21'
+
+jobs:
+  build-admin:
+    name: Build BLNK Admin APK
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm install --no-audit --no-fund
+      - name: Prepare admin web bundle
+        run: |
+          rm -rf www
+          mkdir -p www
+          cp styles.css logo.svg manifest.webmanifest www/
+          cp operations.html www/index.html
+          cp admin.html admin.js customers-admin.html balance-admin.html orders-admin.html pos.html sales-dashboard.html offers-admin.html www/
+      - name: Configure admin app
+        run: |
+          cat > capacitor.config.json <<'EOF'
+          {
+            "appId": "com.blnk.admin",
+            "appName": "BLNK Admin",
+            "webDir": "www",
+            "bundledWebRuntime": false
+          }
+          EOF
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - run: npx cap add android
+      - run: npx cap copy android
+      - name: Build Admin APK
+        working-directory: android
+        run: ./gradlew assembleDebug --no-daemon
+      - uses: actions/upload-artifact@v4
+        with:
+          name: BLNK-Admin-APK
+          path: android/app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error
+          retention-days: 30
