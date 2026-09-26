@@ -29,7 +29,9 @@ jobs:
         run: |
           rm -rf www
           mkdir -p www
-          cp index.html app.js styles.css products.js products.json i18n.js admin.html logo.svg manifest.webmanifest www/
+          cp index.html app.js styles.css products.js products.json i18n.js account.html account.js account-badge.js tryon-ai.js tryon.css customer-card.html logo.svg manifest.webmanifest www/
+          # The customer APK must include every customer-facing page/script.
+          # Admin-only pages stay on the hosted backend and are not bundled.
       - name: Setup Java
         uses: actions/setup-java@v4
         with:
