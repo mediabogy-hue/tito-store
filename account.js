@@ -22,6 +22,7 @@
   const items=invoices.flatMap(x=>x.invoice_items||[]);
   $('#accountState').innerHTML=`<div class="account-top account-summary"><div><p class="eyebrow">BLNK ACCOUNT</p><h2>${profile.full_name||session.user.email}</h2><p class="customer-code">${profile.customer_code||'BLNK MEMBER'}</p></div><button id="logoutBtn" class="button button-light">تسجيل خروج</button></div>
   <div class="account-cards"><article><span>BLNK Balance</span><strong>${money(profile.balance)}</strong></article><article><span>النقاط</span><strong>${Number(profile.points||0).toLocaleString()}</strong></article><article><span>طلباتي</span><strong>${orders.length}</strong></article><article><span>الفواتير</span><strong>${invoices.length}</strong></article></div>
+  <a class="whatsapp-group-cta" href="https://chat.whatsapp.com/GQ2WAxMqO7nKGYieWRviUA" target="_blank" rel="noopener"><strong>انضم لجروب BLNK على WhatsApp</strong><span>العروض والجديد أول بأول ←</span></a>
   <div class="account-menu">
    <button class="account-menu-btn" data-panel="ordersPanel">طلباتي <span>›</span></button>
    <button class="account-menu-btn" data-panel="topupPanel">شحن BLNK Balance <span>›</span></button>
