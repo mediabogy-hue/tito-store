@@ -2,7 +2,7 @@
 (function(){
  const $=s=>document.querySelector(s), money=v=>`EGP ${Number(v||0).toLocaleString('en-US')}`;
  let sb=null, session=null;
- async function config(){const r=await fetch('/api/public-config',{cache:'no-store'});if(!r.ok)throw new Error('Customer accounts are not configured yet.');return r.json()}
+ async function config(){try{const r=await fetch('/api/public-config',{cache:'no-store'});if(r.ok){const x=await r.json();if(x.supabaseUrl&&x.supabasePublishableKey)return x}}catch(e){}return {supabaseUrl:'https://pdgbifhdskgosxgejwvk.supabase.co',supabasePublishableKey:'sb_publishable_Hkigj8Wcm0UfBwHAAEnxow_8wyofL2c'}}
  async function boot(){
   try{const c=await config();if(!c.supabaseUrl||!c.supabasePublishableKey)throw new Error('Customer accounts are not configured yet.');
    sb=window.supabase.createClient(c.supabaseUrl,c.supabasePublishableKey,{auth:{persistSession:true,autoRefreshToken:true}});
