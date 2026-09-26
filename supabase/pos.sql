@@ -41,7 +41,7 @@ alter table public.inventory_movements enable row level security;
 revoke all on public.inventory,public.inventory_movements from anon,authenticated;
 
 create or replace function public.admin_sync_inventory(p_products jsonb)
-returns void language plpgsql security definer set search_path=public as $
+returns void language plpgsql security definer set search_path=public as $$
 declare x jsonb;
 begin
  if not public.is_admin() then raise exception 'FORBIDDEN'; end if;
@@ -50,18 +50,18 @@ begin
   values(x->>'id',greatest(0,coalesce((x->>'stock')::integer,0)),now())
   on conflict(product_id) do nothing;
  end loop;
-end $;
+end $$;
 grant execute on function public.admin_sync_inventory(jsonb) to authenticated;
 
 create or replace function public.admin_inventory()
 returns table(product_id text,stock integer)
-language sql security definer set search_path=public as $
+language sql security definer set search_path=public as $$
  select i.product_id,i.stock from public.inventory i where public.is_admin()
 $;
 grant execute on function public.admin_inventory() to authenticated;
 
 create or replace function public.pos_checkout(p_customer_id uuid,p_items jsonb,p_discount numeric default 0,p_payment_method text default 'cash')
-returns jsonb language plpgsql security definer set search_path=public as $
+returns jsonb language plpgsql security definer set search_path=public as $$
 declare
  v_invoice uuid:=gen_random_uuid();
  v_number text:='BLNK-'||to_char(now(),'YYYYMMDD-HH24MISS')||'-'||upper(substr(replace(gen_random_uuid()::text,'-',''),1,4));
@@ -96,7 +96,7 @@ begin
  end if;
  update public.profiles set points=points+floor(v_total/100)::integer,updated_at=now() where id=p_customer_id;
  return jsonb_build_object('invoice_id',v_invoice,'invoice_number',v_number,'total',v_total,'points_earned',floor(v_total/100)::integer);
-end $;
+end $$;
 revoke all on function public.pos_checkout(uuid,jsonb,numeric,text) from public;
 grant execute on function public.pos_checkout(uuid,jsonb,numeric,text) to authenticated;
 
