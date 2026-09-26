@@ -33,7 +33,7 @@ jobs:
           s=s.replace("const cfg=await fetch('/api/public-config').then(r=>r.json()),sb=", "const cfg={supabaseUrl:'https://pdgbifhdskgosxgejwvk.supabase.co',supabasePublishableKey:'sb_publishable_Hkigj8Wcm0UfBwHAAEnxow_8wyofL2c'},sb=")
           p.write_text(s)
           PY
-          cp admin.html admin.js customers-admin.html balance-admin.html orders-admin.html pos.html pos.js sales-dashboard.html offers-admin.html suppliers-admin.html www/
+          cp admin.html admin.js customers-admin.html balance-admin.html orders-admin.html pos.html pos.js sales-dashboard.html offers-admin.html suppliers-admin.html supplier-finance.html www/
       - name: Configure admin app
         run: |
           cat > capacitor.config.json <<'EOF'
