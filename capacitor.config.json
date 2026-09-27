@@ -2,5 +2,12 @@
   "appId": "com.blnk.store",
   "appName": "BLNK",
   "webDir": "www",
-  "bundledWebRuntime": false
+  "bundledWebRuntime": false,
+  "server": {
+    "url": "https://blnkstore.vercel.app",
+    "cleartext": false,
+    "allowNavigation": [
+      "blnkstore.vercel.app"
+    ]
+  }
 }
