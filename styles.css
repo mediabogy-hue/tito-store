@@ -33,3 +33,39 @@ button,input,select,textarea{border-radius:0}.button{transition:transform .15s e
   .choice-label select,.detail-copy input,.detail-copy select{font-size:16px;min-height:48px}
   .full-button{min-height:50px}
 }
+
+
+/* BLNK Android/WebView hard mobile viewport fix */
+html,body{max-width:100%;overflow-x:hidden}
+@media(max-width:700px){
+  .modal.open{position:fixed!important;inset:0!important;width:100%!important;height:100dvh!important;overflow:hidden!important}
+  .modal-backdrop{display:none!important}
+  .product-modal-card{
+    position:absolute!important;inset:0!important;
+    width:100%!important;max-width:100%!important;
+    height:100dvh!important;max-height:100dvh!important;
+    margin:0!important;padding:0!important;
+    overflow-x:hidden!important;overflow-y:auto!important;
+    -webkit-overflow-scrolling:touch;
+  }
+  .product-detail-grid{display:flex!important;flex-direction:column!important;width:100%!important;gap:0!important}
+  .detail-image{
+    flex:0 0 auto!important;width:100%!important;height:auto!important;
+    min-height:0!important;max-height:none!important;aspect-ratio:auto!important;
+    overflow:hidden!important;background:#f4f4f2!important;
+  }
+  .detail-image img{
+    width:100%!important;height:auto!important;max-width:100%!important;
+    max-height:62dvh!important;object-fit:contain!important;object-position:center top!important;
+  }
+  .detail-image .product-placeholder{width:100%!important;height:auto!important;aspect-ratio:3/4!important}
+  .detail-copy{width:100%!important;min-width:0!important;padding:22px 16px calc(30px + env(safe-area-inset-bottom))!important}
+  .detail-copy h2{
+    width:100%!important;max-width:100%!important;margin:0 0 12px!important;
+    font-size:clamp(30px,10vw,44px)!important;line-height:1!important;
+    letter-spacing:-2px!important;overflow-wrap:anywhere!important;word-break:normal!important;
+  }
+  .detail-copy>*{max-width:100%!important}
+  .choice-label,.choice-label select,.detail-copy input,.detail-copy select,.full-button{width:100%!important;max-width:100%!important}
+  #sizeFinderBox>div{max-width:100%!important;overflow:hidden!important}
+}
