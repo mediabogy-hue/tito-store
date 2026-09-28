@@ -22,11 +22,17 @@
   ],
   "headers": [
     {
+      "source": "/(operations|orders-admin|admin|customers-admin|balance-admin|suppliers-admin|supplier-finance|offers-admin|sales-dashboard|pos|admin-theme|admin-sw)(.*)",
+      "headers": [
+        {"key":"Cache-Control","value":"no-store, no-cache, must-revalidate, max-age=0"}
+      ]
+    },
+    {
       "source": "/(.*)",
       "headers": [
         {
           "key": "X-BLNK-Deploy",
-          "value": "2026-09-27-1524"
+          "value": "2026-09-28-admin-v2"
         }
       ]
     }
