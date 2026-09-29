@@ -75,7 +75,12 @@ export default async function handler(req, res) {
       image: String(p.image || '').trim(),
       note: String(p.note || '').trim(),
       lastPieces: Boolean(p.lastPieces),
-      active: p.active !== false
+      active: p.active !== false,
+      brand: String(p.brand || 'BLNK').trim(),
+      external: Boolean(p.external),
+      sourceUrl: String(p.sourceUrl || '').trim(),
+      sourcePrice: p.sourcePrice === null || p.sourcePrice === '' ? null : Number(p.sourcePrice),
+      sourceSku: String(p.sourceSku || '').trim()
     }));
 
     if (clean.some(p => !p.name || p.price < 0)) {
