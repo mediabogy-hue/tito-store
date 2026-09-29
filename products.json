@@ -1132,5 +1132,60 @@
     "sourceSku": "W54216Z8-H45",
     "active": true,
     "note": "متوفر للطلب عبر BLNK"
+  },
+  {
+    "id": "ext-ravin-0192460",
+    "name": "Stone Utility Drawstring Cargo Trousers",
+    "category": "pants",
+    "price": 779,
+    "oldPrice": 1199,
+    "sizes": [
+      "30",
+      "32",
+      "34",
+      "36",
+      "38"
+    ],
+    "colors": [
+      "Beige"
+    ],
+    "stock": 10,
+    "image": "/api/source-image-proxy?id=ext-ravin-0192460",
+    "images": [],
+    "brand": "RAVIN",
+    "external": true,
+    "sourceUrl": "https://shop.iravin.com/products/stone-utility-drawstring-cargo-trousers-0192460",
+    "sourcePrice": 779,
+    "sourceSku": "0192460",
+    "active": true,
+    "note": "متوفر للطلب عبر BLNK"
+  },
+  {
+    "id": "ext-ravin-r213021",
+    "name": "Ribbed Knit Johnny Collar Polo - Black",
+    "category": "polo",
+    "price": 660,
+    "oldPrice": 1199.99,
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      "Black"
+    ],
+    "stock": 10,
+    "image": "/api/source-image-proxy?id=ext-ravin-r213021",
+    "images": [],
+    "brand": "RAVIN",
+    "external": true,
+    "sourceUrl": "https://shop.iravin.com/products/mens-ribbed-knit-johnny-collar-polo-black",
+    "sourcePrice": 659.99,
+    "sourceSku": "R213021",
+    "active": true,
+    "note": "متوفر للطلب عبر BLNK"
   }
 ]
