@@ -7,6 +7,27 @@ const money=v=>`EGP ${Number(v||0).toLocaleString('en-US')}`;
 const lang=()=>localStorage.getItem('blnk_lang')||'ar';
 function saveCart(){localStorage.setItem(cartKey,JSON.stringify(cart));renderCart()}
 function productImage(p){return p.image?`<img src="${p.image}" alt="${p.name||'BLNK'}" loading="lazy" onerror="this.style.display='none';this.parentElement.classList.add('image-fallback')">`:`<div class="product-placeholder"><span>BLNK</span><small>NO NOISE, JUST STYLE.</small></div>`}
+function budgetMax(v){const s=String(v||'');if(s.includes('Under 500'))return 500;if(s.includes('500–750')||s.includes('500-750'))return 750;if(s.includes('750–1000')||s.includes('750-1000'))return 1000;return Infinity}
+function normSize(v){return String(v||'').toUpperCase().replace('XXL','2XL').replace('XXXL','3XL')}
+function productProfileScore(p,sp){
+ let score=0;const text=[p.name,p.note,p.category,p.brand,...(p.colors||[])].join(' ').toLowerCase();
+ const size=normSize(sp.size);if(size&&(p.sizes||[]).map(normSize).includes(size))score+=5;
+ const fit=String(sp.fit||'').toLowerCase();if(fit&&text.includes(fit))score+=4;
+ const color=String(sp.favorite_colors||'').toLowerCase();if(color&&text.includes(color))score+=3;
+ const disliked=String(sp.disliked_colors||'').toLowerCase();if(disliked&&disliked!=='none'&&text.includes(disliked))score-=5;
+ const cat=String(sp.categories||'').toLowerCase();if(cat&&(text.includes(cat.replace('t-shirts','tshirt'))||text.includes(cat.replace(/s$/,''))))score+=4;
+ if(Number(p.price||0)<=budgetMax(sp.budget))score+=3;else score-=2;
+ const style=String(sp.style||'').toLowerCase();if(style&&text.includes(style))score+=2;
+ return score;
+}
+async function personalizeForSignedInCustomer(){
+ try{const sb=supabase.createClient(BLNK_SUPABASE_URL,BLNK_SUPABASE_KEY);const sess=(await sb.auth.getSession()).data.session;if(!sess)return;
+ const {data:profile}=await sb.from('profiles').select('style_profile').eq('id',sess.user.id).maybeSingle();const sp=profile&&profile.style_profile;if(!sp)return;
+ products=products.map(p=>({...p,_profileScore:productProfileScore(p,sp)})).sort((a,b)=>(b._profileScore||0)-(a._profileScore||0));
+ const shop=document.querySelector('#shop .section-head h2');if(shop)shop.textContent=lang()==='ar'?'مختار ليك على حسب ستايلك.':'Picked for your style.';
+ renderProducts();
+ }catch(e){}
+}
 function renderProducts(filter='all'){
  const list=filter==='all'?products:products.filter(p=>filter==='last'?(p.lastPieces===true||p.category==='last'):p.category===filter);
  if(!list.length){productRoot.innerHTML=`<div class="empty-cart" style="grid-column:1/-1">${lang()==='ar'?'مفيش منتجات متاحة دلوقتي.':'No products available right now.'}</div>`;return}
@@ -60,7 +81,7 @@ async function fetchCatalog(url){try{const r=await fetch(url,{cache:'no-store'})
 const BLNK_SUPABASE_URL='https://pdgbifhdskgosxgejwvk.supabase.co';const BLNK_SUPABASE_KEY='sb_publishable_Hkigj8Wcm0UfBwHAAEnxow_8wyofL2c';
 async function fetchSupplierCatalog(){try{const r=await fetch(BLNK_SUPABASE_URL+'/rest/v1/rpc/public_supplier_catalog?v='+Date.now(),{method:'POST',cache:'no-store',headers:{apikey:BLNK_SUPABASE_KEY,'Content-Type':'application/json'},body:'{}'});if(!r.ok)return[];const d=await r.json();return Array.isArray(d)?d.map(p=>({...p,price:Number(p.price||0),stock:Number(p.stock||0),sizes:Array.isArray(p.sizes)?p.sizes:[],colors:Array.isArray(p.colors)?p.colors:[],active:p.active!==false})):[]}catch(e){return[]}}
 function mergeCatalog(base,supplier){const map=new Map();(base||[]).filter(p=>p.active!==false).forEach(p=>map.set(String(p.id),p));(supplier||[]).filter(p=>p.active!==false).forEach(p=>map.set(String(p.id),p));return [...map.values()]}
-async function loadLiveProducts(){let base=await fetchCatalog('/api/products?v='+Date.now());if(!base||!base.length)base=await fetchCatalog('https://raw.githubusercontent.com/mediabogy-hue/tito-store/main/products.json?v='+Date.now());if(!base&&Array.isArray(window.BLNK_PRODUCTS))base=window.BLNK_PRODUCTS;const supplier=await fetchSupplierCatalog();products=mergeCatalog(base||[],supplier);localStorage.setItem('blnk_products_v1',JSON.stringify(products));renderProducts();renderCart();renderHero();return products}
+async function loadLiveProducts(){let base=await fetchCatalog('/api/products?v='+Date.now());if(!base||!base.length)base=await fetchCatalog('https://raw.githubusercontent.com/mediabogy-hue/tito-store/main/products.json?v='+Date.now());if(!base&&Array.isArray(window.BLNK_PRODUCTS))base=window.BLNK_PRODUCTS;const supplier=await fetchSupplierCatalog();products=mergeCatalog(base||[],supplier);localStorage.setItem('blnk_products_v1',JSON.stringify(products));renderProducts();renderCart();renderHero();await personalizeForSignedInCustomer();return products}
 async function initProducts(){await loadLiveProducts();if(window.initLanguage)window.initLanguage()}
 initProducts();
 setInterval(loadLiveProducts,15000);
