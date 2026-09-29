@@ -18,5 +18,154 @@
     "note": "Relaxed / everyday",
     "lastPieces": false,
     "active": true
+  },
+  {
+    "id": "ext-townteam-5638944118",
+    "name": "T-shirts Standard fit basic",
+    "category": "tshirt",
+    "price": 839,
+    "oldPrice": 2799,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL",
+      "4XL"
+    ],
+    "colors": [
+      "Burgundy",
+      "Black",
+      "Stone"
+    ],
+    "stock": 25,
+    "image": "",
+    "note": "Standard fit basic · mixed fabric",
+    "lastPieces": false,
+    "active": true,
+    "brand": "Town Team",
+    "external": true,
+    "sourceUrl": "https://townteam.com/ar/products/5638944118",
+    "sourcePrice": 839,
+    "sourceSku": "TSH26SKRS20003TM1"
+  },
+  {
+    "id": "ext-townteam-5638977672",
+    "name": "T-shirts Loose fit printed",
+    "category": "tshirt",
+    "price": 879,
+    "oldPrice": 2199,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL",
+      "4XL",
+      "5XL"
+    ],
+    "colors": [
+      "Black"
+    ],
+    "stock": 25,
+    "image": "",
+    "note": "Loose fit printed · round neck · short sleeves",
+    "lastPieces": false,
+    "active": true,
+    "brand": "Town Team",
+    "external": true,
+    "sourceUrl": "https://townteam.com/ar/products/5638977672",
+    "sourcePrice": 879,
+    "sourceSku": "TSH26SPRO20082TM1"
+  },
+  {
+    "id": "ext-townteam-5638554346",
+    "name": "T-shirts Oversized fit round-neck",
+    "category": "tshirt",
+    "price": 699,
+    "oldPrice": 2199,
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL"
+    ],
+    "colors": [
+      "Stone"
+    ],
+    "stock": 25,
+    "image": "",
+    "note": "Oversized fit · jersey · round neck",
+    "lastPieces": false,
+    "active": true,
+    "brand": "Town Team",
+    "external": true,
+    "sourceUrl": "https://townteam.com/products/5638554346",
+    "sourcePrice": 699,
+    "sourceSku": "TSH25SPRO20510TM1"
+  },
+  {
+    "id": "ext-townteam-5638960840",
+    "name": "T-shirts Loose fit Seersucer",
+    "category": "tshirt",
+    "price": 499,
+    "oldPrice": 499,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL",
+      "4XL"
+    ],
+    "colors": [
+      "D-MAUVE"
+    ],
+    "stock": 25,
+    "image": "",
+    "note": "Loose/oversized fit · summer melton",
+    "lastPieces": false,
+    "active": true,
+    "brand": "Town Team",
+    "external": true,
+    "sourceUrl": "https://townteam.com/products/5638960840",
+    "sourcePrice": 499,
+    "sourceSku": "TSH26S20000068TM1"
+  },
+  {
+    "id": "ext-townteam-5638930342",
+    "name": "T-shirts Oversized fit cotton",
+    "category": "tshirt",
+    "price": 959,
+    "oldPrice": 2399,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL",
+      "4XL"
+    ],
+    "colors": [
+      "Khaki",
+      "Black",
+      "OFF WHIT"
+    ],
+    "stock": 25,
+    "image": "",
+    "note": "Oversized fit cotton · mixed fabric",
+    "lastPieces": false,
+    "active": true,
+    "brand": "Town Team",
+    "external": true,
+    "sourceUrl": "https://townteam.com/ar/products/5638930342",
+    "sourcePrice": 959,
+    "sourceSku": "TSH26S20000004TM1"
   }
 ]
