@@ -90,7 +90,7 @@
     let walletTxn = null;
     el.querySelector('#blnkAiRun').disabled = true;
     try {
-      if(!window.BLNKAccount?.getSession?.()) throw new Error(AR() ? 'سجّل دخولك في حساب BLNK الأول علشان تستخدم جرب المنتج.' : 'Sign in to your BLNK account first.');
+      const activeSession=await window.BLNKAccount?.getSession?.();\n      if(!activeSession) throw new Error(AR() ? 'سجّل دخولك في حساب BLNK الأول علشان تستخدم جرب المنتج.' : 'Sign in to your BLNK account first.');
       try {
         walletTxn = await window.BLNKAccount.reserveTryOn(currentProduct.id);
       } catch(e) {
