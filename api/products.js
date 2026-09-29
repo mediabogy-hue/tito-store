@@ -73,6 +73,7 @@ export default async function handler(req, res) {
       colors: Array.isArray(p.colors) ? p.colors.map(String).filter(Boolean) : [],
       stock: Number.isFinite(Number(p.stock)) ? Number(p.stock) : 0,
       image: String(p.image || '').trim(),
+      images: Array.isArray(p.images) ? p.images.map(String).filter(Boolean) : [],
       note: String(p.note || '').trim(),
       lastPieces: Boolean(p.lastPieces),
       active: p.active !== false,
