@@ -1097,5 +1097,40 @@
     "sourceSku": "COUP-BUTTONED-POLO",
     "active": true,
     "note": "متوفر للطلب عبر BLNK"
+  },
+  {
+    "id": "ext-lcw-7994454-4589115",
+    "name": "بنطلون جينز رجالي 779 Regular Fit",
+    "category": "jeans",
+    "price": 1099,
+    "oldPrice": null,
+    "sizes": [
+      "27",
+      "28",
+      "29",
+      "30",
+      "31",
+      "32",
+      "33",
+      "34",
+      "36",
+      "38",
+      "40",
+      "42",
+      "44"
+    ],
+    "colors": [
+      "Indigo"
+    ],
+    "stock": 10,
+    "image": "/api/source-image-proxy?id=ext-lcw-7994454-4589115",
+    "images": [],
+    "brand": "LC Waikiki",
+    "external": true,
+    "sourceUrl": "https://www.lcwaikiki.eg/ar-EG/EG/product/LC-WAIKIKI/%D8%B1%D8%AC%D8%A7%D9%84%D9%8A/%D8%AC%D9%8A%D9%86%D8%B2/7994454/4589115",
+    "sourcePrice": 1099,
+    "sourceSku": "W54216Z8-H45",
+    "active": true,
+    "note": "متوفر للطلب عبر BLNK"
   }
 ]
