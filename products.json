@@ -40,7 +40,7 @@
       "Stone"
     ],
     "stock": 25,
-    "image": "",
+    "image": "/api/source-image-proxy?id=ext-townteam-5638944118",
     "note": "Standard fit basic · mixed fabric",
     "lastPieces": false,
     "active": true,
@@ -70,7 +70,7 @@
       "Black"
     ],
     "stock": 25,
-    "image": "",
+    "image": "/api/source-image-proxy?id=ext-townteam-5638977672",
     "note": "Loose fit printed · round neck · short sleeves",
     "lastPieces": false,
     "active": true,
@@ -98,7 +98,7 @@
       "Stone"
     ],
     "stock": 25,
-    "image": "",
+    "image": "/api/source-image-proxy?id=ext-townteam-5638554346",
     "note": "Oversized fit · jersey · round neck",
     "lastPieces": false,
     "active": true,
@@ -127,7 +127,7 @@
       "D-MAUVE"
     ],
     "stock": 25,
-    "image": "",
+    "image": "/api/source-image-proxy?id=ext-townteam-5638960840",
     "note": "Loose/oversized fit · summer melton",
     "lastPieces": false,
     "active": true,
@@ -158,7 +158,7 @@
       "OFF WHIT"
     ],
     "stock": 25,
-    "image": "",
+    "image": "/api/source-image-proxy?id=ext-townteam-5638930342",
     "note": "Oversized fit cotton · mixed fabric",
     "lastPieces": false,
     "active": true,
@@ -189,7 +189,7 @@
       "Black"
     ],
     "stock": 0,
-    "image": "",
+    "image": "/api/source-image-proxy?id=ext-townteam-7445929210457829966",
     "note": "External catalog · availability checked at source before purchase",
     "lastPieces": false,
     "active": true,
@@ -219,7 +219,7 @@
       "Black"
     ],
     "stock": 0,
-    "image": "",
+    "image": "/api/source-image-proxy?id=ext-townteam-5638008284",
     "note": "External catalog · availability checked at source before purchase",
     "lastPieces": false,
     "active": true,
@@ -241,7 +241,7 @@
       "Olive"
     ],
     "stock": 0,
-    "image": "",
+    "image": "/api/source-image-proxy?id=ext-coup-tshirt-entry",
     "note": "External catalog · selected COUP T-shirts currently listed from EGP 499",
     "lastPieces": false,
     "active": true,
@@ -262,7 +262,7 @@
       "Black"
     ],
     "stock": 0,
-    "image": "",
+    "image": "/api/source-image-proxy?id=ext-coup-time-recharge",
     "note": "External catalog · availability checked at source before purchase",
     "lastPieces": false,
     "active": true,
@@ -297,7 +297,7 @@
       "Olive"
     ],
     "stock": 1,
-    "image": "",
+    "image": "/api/source-image-proxy?id=ext-townteam-5638044152",
     "note": "متوفر للطلب عبر BLNK · التوفر حسب المصدر",
     "active": true,
     "brand": "Town Team",
@@ -325,7 +325,7 @@
       "Black"
     ],
     "stock": 1,
-    "image": "",
+    "image": "/api/source-image-proxy?id=ext-townteam-5638530075",
     "note": "متوفر للطلب عبر BLNK · التوفر حسب المصدر",
     "active": true,
     "brand": "Town Team",
@@ -353,7 +353,7 @@
       "BLK/WHT"
     ],
     "stock": 1,
-    "image": "",
+    "image": "/api/source-image-proxy?id=ext-townteam-5638164380",
     "note": "متوفر للطلب عبر BLNK · التوفر حسب المصدر",
     "active": true,
     "brand": "Town Team",
@@ -384,7 +384,7 @@
       "Black"
     ],
     "stock": 1,
-    "image": "",
+    "image": "/api/source-image-proxy?id=ext-townteam-5638044090",
     "note": "متوفر للطلب عبر BLNK · التوفر حسب المصدر",
     "active": true,
     "brand": "Town Team",
@@ -413,7 +413,7 @@
       "Olive"
     ],
     "stock": 21,
-    "image": "",
+    "image": "/api/source-image-proxy?id=ext-townteam-5638035245",
     "images": [],
     "note": "Oversized · متوفر للطلب عبر BLNK",
     "active": true,
@@ -442,7 +442,7 @@
       "Black"
     ],
     "stock": 1,
-    "image": "",
+    "image": "/api/source-image-proxy?id=ext-townteam-5638539478",
     "images": [],
     "note": "Relaxed fit · متوفر للطلب عبر BLNK",
     "active": true,
@@ -472,7 +472,7 @@
       "D-GREY"
     ],
     "stock": 1,
-    "image": "",
+    "image": "/api/source-image-proxy?id=ext-townteam-5638464843",
     "images": [],
     "note": "Oversized fit · متوفر للطلب عبر BLNK",
     "active": true,
@@ -501,7 +501,7 @@
       "Black"
     ],
     "stock": 1,
-    "image": "",
+    "image": "/api/source-image-proxy?id=ext-townteam-5638338825",
     "images": [],
     "note": "Printed · متوفر للطلب عبر BLNK",
     "active": true,
@@ -530,7 +530,7 @@
       "LI.OLIVE"
     ],
     "stock": 1,
-    "image": "",
+    "image": "/api/source-image-proxy?id=ext-townteam-7-20029e-18",
     "images": [],
     "note": "متوفر للطلب عبر BLNK",
     "active": true,
@@ -563,7 +563,7 @@
       "D-BEIGE"
     ],
     "stock": 1,
-    "image": "",
+    "image": "/api/source-image-proxy?id=ext-townteam-5638324575",
     "images": [],
     "note": "Oversized style · متوفر للطلب عبر BLNK",
     "active": true,
@@ -591,7 +591,7 @@
       "Green"
     ],
     "stock": 1,
-    "image": "",
+    "image": "/api/source-image-proxy?id=ext-townteam-5639042412",
     "images": [],
     "note": "Comfort/standard fit · متوفر للطلب عبر BLNK",
     "active": true,
@@ -620,7 +620,7 @@
       "Black"
     ],
     "stock": 1,
-    "image": "",
+    "image": "/api/source-image-proxy?id=ext-townteam-5638017524",
     "images": [],
     "note": "Comfort fit · متوفر للطلب عبر BLNK",
     "active": true,
