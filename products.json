@@ -392,5 +392,242 @@
     "sourceUrl": "https://townteam.com/ar/products/5638044090",
     "sourcePrice": 449,
     "sourceSku": "TSH24SPRO20179TM1"
+  },
+  {
+    "id": "ext-townteam-5638035245",
+    "name": "T-shirts Oversized - D-GREY",
+    "category": "tshirt",
+    "price": 499,
+    "oldPrice": 1799,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL",
+      "4XL"
+    ],
+    "colors": [
+      "D-GREY",
+      "Olive"
+    ],
+    "stock": 21,
+    "image": "",
+    "images": [],
+    "note": "Oversized · متوفر للطلب عبر BLNK",
+    "active": true,
+    "brand": "Town Team",
+    "external": true,
+    "sourceUrl": "https://townteam.com/ar/products/5638035245",
+    "sourcePrice": 499,
+    "sourceSku": "TSH24SPRO20114TM1"
+  },
+  {
+    "id": "ext-townteam-5638539478",
+    "name": "T-shirts Relaxed fit - Black",
+    "category": "tshirt",
+    "price": 399,
+    "oldPrice": 2199,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL",
+      "4XL"
+    ],
+    "colors": [
+      "Black"
+    ],
+    "stock": 1,
+    "image": "",
+    "images": [],
+    "note": "Relaxed fit · متوفر للطلب عبر BLNK",
+    "active": true,
+    "brand": "Town Team",
+    "external": true,
+    "sourceUrl": "https://townteam.com/ar/products/5638539478",
+    "sourcePrice": 399,
+    "sourceSku": "TSH25SARO20427TM1"
+  },
+  {
+    "id": "ext-townteam-5638464843",
+    "name": "Sweatshirts Oversized fit - D-GREY",
+    "category": "sweatshirt",
+    "price": 699,
+    "oldPrice": 2399,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL",
+      "4XL",
+      "5XL"
+    ],
+    "colors": [
+      "D-GREY"
+    ],
+    "stock": 1,
+    "image": "",
+    "images": [],
+    "note": "Oversized fit · متوفر للطلب عبر BLNK",
+    "active": true,
+    "brand": "Town Team",
+    "external": true,
+    "sourceUrl": "https://townteam.com/ar/products/5638464843",
+    "sourcePrice": 699,
+    "sourceSku": "SWS25WHNK26339TM1"
+  },
+  {
+    "id": "ext-townteam-5638338825",
+    "name": "Sweatshirts Printed - Black",
+    "category": "sweatshirt",
+    "price": 849,
+    "oldPrice": 2599,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL",
+      "4XL"
+    ],
+    "colors": [
+      "Black"
+    ],
+    "stock": 1,
+    "image": "",
+    "images": [],
+    "note": "Printed · متوفر للطلب عبر BLNK",
+    "active": true,
+    "brand": "Town Team",
+    "external": true,
+    "sourceUrl": "https://townteam.com/ar/products/5638338825",
+    "sourcePrice": 849,
+    "sourceSku": "SWS25WRNL26271TM1"
+  },
+  {
+    "id": "ext-townteam-7-20029e-18",
+    "name": "Pants Men",
+    "category": "pants",
+    "price": 1199,
+    "oldPrice": 2399,
+    "sizes": [
+      "42",
+      "44",
+      "46"
+    ],
+    "colors": [
+      "ARTICHOK",
+      "NAVY",
+      "BEIGE",
+      "Black",
+      "LI.OLIVE"
+    ],
+    "stock": 1,
+    "image": "",
+    "images": [],
+    "note": "متوفر للطلب عبر BLNK",
+    "active": true,
+    "brand": "Town Team",
+    "external": true,
+    "sourceUrl": "https://townteam.com/ar/products/7-20029e-18",
+    "sourcePrice": 1199,
+    "sourceSku": "PAN22GPAQ23191TS1"
+  },
+  {
+    "id": "ext-townteam-5638324575",
+    "name": "Over Shirts Men",
+    "category": "shirt",
+    "price": 799,
+    "oldPrice": 2499,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL",
+      "4XL",
+      "5XL",
+      "6XL"
+    ],
+    "colors": [
+      "Olive",
+      "Black",
+      "D-BEIGE"
+    ],
+    "stock": 1,
+    "image": "",
+    "images": [],
+    "note": "Oversized style · متوفر للطلب عبر BLNK",
+    "active": true,
+    "brand": "Town Team",
+    "external": true,
+    "sourceUrl": "https://townteam.com/ar/products/5638324575",
+    "sourcePrice": 799,
+    "sourceSku": "OSH25WEUD19139TM1"
+  },
+  {
+    "id": "ext-townteam-5639042412",
+    "name": "T-shirts Standard fit basic - Green",
+    "category": "tshirt",
+    "price": 1199,
+    "oldPrice": 2399,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL"
+    ],
+    "colors": [
+      "Green"
+    ],
+    "stock": 1,
+    "image": "",
+    "images": [],
+    "note": "Comfort/standard fit · متوفر للطلب عبر BLNK",
+    "active": true,
+    "brand": "Town Team",
+    "external": true,
+    "sourceUrl": "https://townteam.com/ar/products/5639042412",
+    "sourcePrice": 1199,
+    "sourceSku": "TSH26SPR20033TM1"
+  },
+  {
+    "id": "ext-townteam-5638017524",
+    "name": "Shorts Comfort fit printed - Black",
+    "category": "shorts",
+    "price": 449,
+    "oldPrice": 1999,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL",
+      "4XL"
+    ],
+    "colors": [
+      "Black"
+    ],
+    "stock": 1,
+    "image": "",
+    "images": [],
+    "note": "Comfort fit · متوفر للطلب عبر BLNK",
+    "active": true,
+    "brand": "Town Team",
+    "external": true,
+    "sourceUrl": "https://townteam.com/ar/products/5638017524",
+    "sourcePrice": 449,
+    "sourceSku": "SHR24SMPS29160TM1"
   }
 ]
