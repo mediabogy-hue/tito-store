@@ -6,7 +6,7 @@ let products=[];
 const money=v=>`EGP ${Number(v||0).toLocaleString('en-US')}`;
 const lang=()=>localStorage.getItem('blnk_lang')||'ar';
 function saveCart(){localStorage.setItem(cartKey,JSON.stringify(cart));renderCart()}
-function productImage(p){return p.image?`<img src="${p.image}" alt="${p.name||'BLNK'}" loading="lazy" onerror="this.style.display='none';this.parentElement.classList.add('image-fallback')">`:`<div class="product-placeholder"><span>BLNK</span><small>NO NOISE, JUST STYLE.</small></div>`}
+function productImage(p){return p.image?`<img src="${p.image}" alt="${p.name||'BLNK'}" loading="lazy" onerror="const card=this.closest('.product');if(card)card.remove();else{this.style.display='none';this.parentElement.classList.add('image-fallback')}">`:`<div class="product-placeholder"><span>BLNK</span><small>NO NOISE, JUST STYLE.</small></div>`}
 function budgetMax(v){const s=String(v||'');if(s.includes('Under 500'))return 500;if(s.includes('500–750')||s.includes('500-750'))return 750;if(s.includes('750–1000')||s.includes('750-1000'))return 1000;return Infinity}
 function normSize(v){return String(v||'').toUpperCase().replace('XXL','2XL').replace('XXXL','3XL')}
 function productProfileScore(p,sp){
