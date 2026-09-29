@@ -629,5 +629,473 @@
     "sourceUrl": "https://townteam.com/ar/products/5638017524",
     "sourcePrice": 449,
     "sourceSku": "SHR24SMPS29160TM1"
+  },
+  {
+    "id": "ext-townteam-5638841567",
+    "name": "Sweatshirts Regular fit printed",
+    "category": "sweatshirt",
+    "price": 699,
+    "oldPrice": 2599,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL",
+      "4XL",
+      "5XL",
+      "6XL"
+    ],
+    "colors": [
+      "Khaki",
+      "Navy"
+    ],
+    "stock": 10,
+    "image": "/api/source-image-proxy?id=ext-townteam-5638841567",
+    "images": [],
+    "brand": "Town Team",
+    "external": true,
+    "sourceUrl": "https://townteam.com/ar/products/5638841567",
+    "sourcePrice": 699,
+    "sourceSku": "SWS26WZNS26416TM1",
+    "active": true,
+    "note": "متوفر للطلب عبر BLNK"
+  },
+  {
+    "id": "ext-townteam-5638692115",
+    "name": "Polo shirts Regular fit",
+    "category": "polo",
+    "price": 399,
+    "oldPrice": 499,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL",
+      "4XL"
+    ],
+    "colors": [
+      "Navy",
+      "Coral",
+      "D-BEIGE",
+      "Black",
+      "Brick"
+    ],
+    "stock": 10,
+    "image": "/api/source-image-proxy?id=ext-townteam-5638692115",
+    "images": [],
+    "brand": "Town Team",
+    "external": true,
+    "sourceUrl": "https://townteam.com/ar/products/5638692115",
+    "sourcePrice": 399,
+    "sourceSku": "POS25SBPR21961TM1",
+    "active": true,
+    "note": "متوفر للطلب عبر BLNK"
+  },
+  {
+    "id": "ext-townteam-5639248017",
+    "name": "Polo shirts Regular fit pique",
+    "category": "polo",
+    "price": 499,
+    "oldPrice": 499,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL",
+      "4XL"
+    ],
+    "colors": [
+      "OFF WHIT"
+    ],
+    "stock": 10,
+    "image": "/api/source-image-proxy?id=ext-townteam-5639248017",
+    "images": [],
+    "brand": "Town Team",
+    "external": true,
+    "sourceUrl": "https://townteam.com/ar/products/5639248017",
+    "sourcePrice": 499,
+    "sourceSku": "POS27S21000073TM1",
+    "active": true,
+    "note": "متوفر للطلب عبر BLNK"
+  },
+  {
+    "id": "ext-townteam-5638629019",
+    "name": "Polo shirts Regular fit textured",
+    "category": "polo",
+    "price": 1399,
+    "oldPrice": 2599,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL",
+      "4XL"
+    ],
+    "colors": [
+      "OFF/CAFE"
+    ],
+    "stock": 10,
+    "image": "/api/source-image-proxy?id=ext-townteam-5638629019",
+    "images": [],
+    "brand": "Town Team",
+    "external": true,
+    "sourceUrl": "https://townteam.com/ar/products/5638629019",
+    "sourcePrice": 1399,
+    "sourceSku": "POS25SKTW21955TM1",
+    "active": true,
+    "note": "متوفر للطلب عبر BLNK"
+  },
+  {
+    "id": "ext-townteam-5639109875",
+    "name": "Polo shirts Regular fit textured",
+    "category": "polo",
+    "price": 1399,
+    "oldPrice": 2799,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL",
+      "4XL",
+      "5XL",
+      "6XL",
+      "7XL"
+    ],
+    "colors": [
+      "Beige",
+      "Charcoal"
+    ],
+    "stock": 10,
+    "image": "/api/source-image-proxy?id=ext-townteam-5639109875",
+    "images": [],
+    "brand": "Town Team",
+    "external": true,
+    "sourceUrl": "https://townteam.com/ar/products/5639109875",
+    "sourcePrice": 1399,
+    "sourceSku": "POS26S21000003TM1",
+    "active": true,
+    "note": "متوفر للطلب عبر BLNK"
+  },
+  {
+    "id": "ext-townteam-5639425513",
+    "name": "Polo shirts Regular fit pique",
+    "category": "polo",
+    "price": 1919,
+    "oldPrice": 3199,
+    "sizes": [
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL",
+      "4XL",
+      "5XL"
+    ],
+    "colors": [
+      "Brown",
+      "L-GREEN",
+      "Brick",
+      "baby Blue",
+      "White",
+      "Army",
+      "Black"
+    ],
+    "stock": 10,
+    "image": "/api/source-image-proxy?id=ext-townteam-5639425513",
+    "images": [],
+    "brand": "Town Team",
+    "external": true,
+    "sourceUrl": "https://townteam.com/ar/products/5639425513",
+    "sourcePrice": 1919,
+    "sourceSku": "POS26S21000115TM1",
+    "active": true,
+    "note": "متوفر للطلب عبر BLNK"
+  },
+  {
+    "id": "ext-townteam-7-07106e-18",
+    "name": "Pants Men",
+    "category": "pants",
+    "price": 1099,
+    "oldPrice": 1099,
+    "sizes": [
+      "29",
+      "30",
+      "31",
+      "32",
+      "33",
+      "34",
+      "36",
+      "38",
+      "40",
+      "42"
+    ],
+    "colors": [
+      "CAFE",
+      "Dark Grey",
+      "GREY",
+      "NAVY",
+      "Black",
+      "Beige",
+      "CAMEL"
+    ],
+    "stock": 10,
+    "image": "/api/source-image-proxy?id=ext-townteam-7-07106e-18",
+    "images": [],
+    "brand": "Town Team",
+    "external": true,
+    "sourceUrl": "https://townteam.com/ar/products/7-07106e-18",
+    "sourcePrice": 1099,
+    "sourceSku": "PAN-TT-07106",
+    "active": true,
+    "note": "متوفر للطلب عبر BLNK"
+  },
+  {
+    "id": "ext-coup-knit-round",
+    "name": "Round Neck Knitwear Men's T-Shirt",
+    "category": "tshirt",
+    "price": 249,
+    "oldPrice": 2599,
+    "sizes": [
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL"
+    ],
+    "colors": [
+      "Black",
+      "BEIGE",
+      "SKYBLUE"
+    ],
+    "stock": 10,
+    "image": "/api/source-image-proxy?id=ext-coup-knit-round",
+    "images": [],
+    "brand": "COUP",
+    "external": true,
+    "sourceUrl": "https://coupeg.com/product/coup-round-neck-knitwear-mens-t-shirt/",
+    "sourcePrice": 249,
+    "sourceSku": "COUP-KNIT-ROUND",
+    "active": true,
+    "note": "متوفر للطلب عبر BLNK"
+  },
+  {
+    "id": "ext-coup-burning-fire",
+    "name": "Burning Fire Detailed Printed Men's T-Shirt",
+    "category": "tshirt",
+    "price": 249,
+    "oldPrice": 2799,
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "colors": [
+      "Black"
+    ],
+    "stock": 10,
+    "image": "/api/source-image-proxy?id=ext-coup-burning-fire",
+    "images": [],
+    "brand": "COUP",
+    "external": true,
+    "sourceUrl": "https://coupeg.com/product/coup-burning-fire-detailed-printed-mens-t-shirt/",
+    "sourcePrice": 249,
+    "sourceSku": "COUP-BURNING-FIRE",
+    "active": true,
+    "note": "متوفر للطلب عبر BLNK"
+  },
+  {
+    "id": "ext-coup-solid-polo",
+    "name": "Solid Polo-shirt with Short Sleeves",
+    "category": "polo",
+    "price": 599,
+    "oldPrice": 599,
+    "sizes": [
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL"
+    ],
+    "colors": [
+      "Black",
+      "Blue",
+      "Green",
+      "Orange",
+      "BEIGE",
+      "BROWN",
+      "BURGUNDY",
+      "Camel",
+      "CHARCOAL",
+      "Navy",
+      "Olive",
+      "WHITE"
+    ],
+    "stock": 10,
+    "image": "/api/source-image-proxy?id=ext-coup-solid-polo",
+    "images": [],
+    "brand": "COUP",
+    "external": true,
+    "sourceUrl": "https://coupeg.com/product/coup-solid-polo-shirt-with-short-sleeves-2/",
+    "sourcePrice": 599,
+    "sourceSku": "COUP-SOLID-POLO",
+    "active": true,
+    "note": "متوفر للطلب عبر BLNK"
+  },
+  {
+    "id": "ext-coup-knit-polo",
+    "name": "Regular Fit Short Sleeve Knitwear Polo T-Shirt",
+    "category": "polo",
+    "price": 699,
+    "oldPrice": 699,
+    "sizes": [
+      "M",
+      "L",
+      "2XL",
+      "3XL"
+    ],
+    "colors": [
+      "Black",
+      "CHARCOAL",
+      "OFFWHITE"
+    ],
+    "stock": 10,
+    "image": "/api/source-image-proxy?id=ext-coup-knit-polo",
+    "images": [],
+    "brand": "COUP",
+    "external": true,
+    "sourceUrl": "https://coupeg.com/product/coup-regular-fit-short-sleeve-knitwear-polo-t-shirt/",
+    "sourcePrice": 699,
+    "sourceSku": "1100287",
+    "active": true,
+    "note": "متوفر للطلب عبر BLNK"
+  },
+  {
+    "id": "ext-coup-linen-set",
+    "name": "Men's Summer Casual Linen Shirt & Matching Pants Set",
+    "category": "set",
+    "price": 3499,
+    "oldPrice": 6499,
+    "sizes": [
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL"
+    ],
+    "colors": [
+      "Black",
+      "BEIGE",
+      "Kahki"
+    ],
+    "stock": 10,
+    "image": "/api/source-image-proxy?id=ext-coup-linen-set",
+    "images": [],
+    "brand": "COUP",
+    "external": true,
+    "sourceUrl": "https://coupeg.com/product/coup-mens-summer-casual-linen-shirt-matching-pants-set/",
+    "sourcePrice": 3499,
+    "sourceSku": "2500005",
+    "active": true,
+    "note": "متوفر للطلب عبر BLNK"
+  },
+  {
+    "id": "ext-coup-quarterzip-polo",
+    "name": "Men's Quarter-Zip Knit Polo T-Shirt with Stripes",
+    "category": "polo",
+    "price": 1499,
+    "oldPrice": 2999,
+    "sizes": [
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL"
+    ],
+    "colors": [
+      "Navy",
+      "WHITE"
+    ],
+    "stock": 10,
+    "image": "/api/source-image-proxy?id=ext-coup-quarterzip-polo",
+    "images": [],
+    "brand": "COUP",
+    "external": true,
+    "sourceUrl": "https://coupeg.com/product/coup-mens-quarter-zip-knit-polo-t-shirt-with-stripes/",
+    "sourcePrice": 1499,
+    "sourceSku": "1100356",
+    "active": true,
+    "note": "متوفر للطلب عبر BLNK"
+  },
+  {
+    "id": "ext-coup-striped-polo",
+    "name": "Men's Knitted Striped Polo T-shirt",
+    "category": "polo",
+    "price": 1499,
+    "oldPrice": 2999,
+    "sizes": [
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL"
+    ],
+    "colors": [
+      "BEIGE",
+      "Indigo",
+      "WHITE"
+    ],
+    "stock": 10,
+    "image": "/api/source-image-proxy?id=ext-coup-striped-polo",
+    "images": [],
+    "brand": "COUP",
+    "external": true,
+    "sourceUrl": "https://coupeg.com/product/coup-mens-knitted-striped-polo-t-shirt/",
+    "sourcePrice": 1499,
+    "sourceSku": "COUP-STRIPED-POLO",
+    "active": true,
+    "note": "متوفر للطلب عبر BLNK"
+  },
+  {
+    "id": "ext-coup-buttoned-polo",
+    "name": "Premium Buttoned Knit Polo – Short Sleeve",
+    "category": "polo",
+    "price": 1299,
+    "oldPrice": 1999,
+    "sizes": [
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL"
+    ],
+    "colors": [
+      "BEIGE",
+      "BURGUNDY",
+      "MINT",
+      "Navy",
+      "WHITE"
+    ],
+    "stock": 10,
+    "image": "/api/source-image-proxy?id=ext-coup-buttoned-polo",
+    "images": [],
+    "brand": "COUP",
+    "external": true,
+    "sourceUrl": "https://coupeg.com/product/coup-premium-buttoned-knit-polo-short-sleeve/",
+    "sourcePrice": 1299,
+    "sourceSku": "COUP-BUTTONED-POLO",
+    "active": true,
+    "note": "متوفر للطلب عبر BLNK"
   }
 ]
