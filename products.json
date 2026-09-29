@@ -271,5 +271,126 @@
     "sourceUrl": "https://coupeg.com/product-category/t-shirts/",
     "sourcePrice": 499,
     "sourceSku": "COUP-TIME-RECHARGE"
+  },
+  {
+    "id": "ext-townteam-5638044152",
+    "name": "T-shirts Oversized fit round-neck",
+    "category": "tshirt",
+    "price": 399,
+    "oldPrice": null,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL",
+      "4XL",
+      "5XL",
+      "6XL"
+    ],
+    "colors": [
+      "OFF WHIT",
+      "Stone",
+      "Silver",
+      "Black",
+      "Olive"
+    ],
+    "stock": 1,
+    "image": "",
+    "note": "متوفر للطلب عبر BLNK · التوفر حسب المصدر",
+    "active": true,
+    "brand": "Town Team",
+    "external": true,
+    "sourceUrl": "https://townteam.com/ar/products/5638044152",
+    "sourcePrice": 399,
+    "sourceSku": ""
+  },
+  {
+    "id": "ext-townteam-5638530075",
+    "name": "T-shirts Oversized fit round-neck - Black",
+    "category": "tshirt",
+    "price": 299,
+    "oldPrice": 2199,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL",
+      "4XL"
+    ],
+    "colors": [
+      "Black"
+    ],
+    "stock": 1,
+    "image": "",
+    "note": "متوفر للطلب عبر BLNK · التوفر حسب المصدر",
+    "active": true,
+    "brand": "Town Team",
+    "external": true,
+    "sourceUrl": "https://townteam.com/ar/products/5638530075",
+    "sourcePrice": 299,
+    "sourceSku": "TSH25SPRO20324TM1"
+  },
+  {
+    "id": "ext-townteam-5638164380",
+    "name": "T-shirts Oversized fit round-neck - BLK/WHT",
+    "category": "tshirt",
+    "price": 599,
+    "oldPrice": 1999,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL",
+      "4XL"
+    ],
+    "colors": [
+      "BLK/WHT"
+    ],
+    "stock": 1,
+    "image": "",
+    "note": "متوفر للطلب عبر BLNK · التوفر حسب المصدر",
+    "active": true,
+    "brand": "Town Team",
+    "external": true,
+    "sourceUrl": "https://townteam.com/ar/products/5638164380",
+    "sourcePrice": 599,
+    "sourceSku": "TSH24SSRO20220TM1"
+  },
+  {
+    "id": "ext-townteam-5638044090",
+    "name": "T-shirts Oversized fit round-neck - Stone",
+    "category": "tshirt",
+    "price": 449,
+    "oldPrice": 1799,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL",
+      "4XL"
+    ],
+    "colors": [
+      "Stone",
+      "Olive",
+      "D-ORANGE",
+      "Black"
+    ],
+    "stock": 1,
+    "image": "",
+    "note": "متوفر للطلب عبر BLNK · التوفر حسب المصدر",
+    "active": true,
+    "brand": "Town Team",
+    "external": true,
+    "sourceUrl": "https://townteam.com/ar/products/5638044090",
+    "sourcePrice": 449,
+    "sourceSku": "TSH24SPRO20179TM1"
   }
 ]
