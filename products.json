@@ -167,5 +167,109 @@
     "sourceUrl": "https://townteam.com/ar/products/5638930342",
     "sourcePrice": 959,
     "sourceSku": "TSH26S20000004TM1"
+  },
+  {
+    "id": "ext-townteam-7445929210457829966",
+    "name": "T-shirts Men",
+    "category": "tshirt",
+    "price": 399,
+    "oldPrice": 399,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL"
+    ],
+    "colors": [
+      "Orange",
+      "Green",
+      "White",
+      "Black"
+    ],
+    "stock": 0,
+    "image": "",
+    "note": "External catalog · availability checked at source before purchase",
+    "lastPieces": false,
+    "active": true,
+    "brand": "Town Team",
+    "external": true,
+    "sourceUrl": "https://townteam.com/ar/products/7445929210457829966",
+    "sourcePrice": 399,
+    "sourceSku": "TSH22SCOT20374TM1"
+  },
+  {
+    "id": "ext-townteam-5638008284",
+    "name": "T-shirts Oversized",
+    "category": "tshirt",
+    "price": 399,
+    "oldPrice": 1799,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL",
+      "4XL"
+    ],
+    "colors": [
+      "L-BEIGE",
+      "Black"
+    ],
+    "stock": 0,
+    "image": "",
+    "note": "External catalog · availability checked at source before purchase",
+    "lastPieces": false,
+    "active": true,
+    "brand": "Town Team",
+    "external": true,
+    "sourceUrl": "https://townteam.com/ar/products/5638008284",
+    "sourcePrice": 399,
+    "sourceSku": "TSH24SPRO20997TM1"
+  },
+  {
+    "id": "ext-coup-tshirt-entry",
+    "name": "COUP T-Shirt Collection",
+    "category": "tshirt",
+    "price": 499,
+    "oldPrice": 3499,
+    "sizes": [],
+    "colors": [
+      "Black",
+      "Olive"
+    ],
+    "stock": 0,
+    "image": "",
+    "note": "External catalog · selected COUP T-shirts currently listed from EGP 499",
+    "lastPieces": false,
+    "active": true,
+    "brand": "COUP",
+    "external": true,
+    "sourceUrl": "https://coupeg.com/product-category/t-shirts/",
+    "sourcePrice": 499,
+    "sourceSku": "COUP-TSH-CATALOG"
+  },
+  {
+    "id": "ext-coup-time-recharge",
+    "name": "Time To Recharge Retro Typography T-shirt",
+    "category": "tshirt",
+    "price": 499,
+    "oldPrice": 1599,
+    "sizes": [],
+    "colors": [
+      "Black"
+    ],
+    "stock": 0,
+    "image": "",
+    "note": "External catalog · availability checked at source before purchase",
+    "lastPieces": false,
+    "active": true,
+    "brand": "COUP",
+    "external": true,
+    "sourceUrl": "https://coupeg.com/product-category/t-shirts/",
+    "sourcePrice": 499,
+    "sourceSku": "COUP-TIME-RECHARGE"
   }
 ]
