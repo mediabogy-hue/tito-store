@@ -45,26 +45,53 @@ function renderProducts(filter='all'){
 }
 
 const BLNK_SIZE_PROFILE_KEY='blnk_size_profile_v1';
-function sizeRank(s){const x=String(s).toUpperCase().replace('XXL','2XL').replace('XXXL','3XL');return ['XS','S','M','L','XL','2XL','3XL','4XL'].indexOf(x)}
+function sizeRank(s){const x=normSize(s);return ['XS','S','M','L','XL','2XL','3XL','4XL'].indexOf(x)}
+const GLOBAL_ALPHA_SIZE_CHART=[
+ {size:'XS',chest:[81,86],waist:[66,71],hip:[81,86]},
+ {size:'S',chest:[86,94],waist:[71,79],hip:[86,94]},
+ {size:'M',chest:[94,102],waist:[79,86],hip:[94,102]},
+ {size:'L',chest:[102,109],waist:[86,94],hip:[102,109]},
+ {size:'XL',chest:[109,117],waist:[94,102],hip:[109,117]},
+ {size:'2XL',chest:[117,127],waist:[102,112],hip:[117,127]},
+ {size:'3XL',chest:[127,137],waist:[112,122],hip:[127,137]}
+];
+const GLOBAL_WAIST_SIZES=[28,30,32,34,36,38,40,42,44];
+function numericWaistSizes(p){return (Array.isArray(p.sizes)?p.sizes:[]).map(s=>String(s).trim()).filter(s=>GLOBAL_WAIST_SIZES.includes(Number(s)))}
 function recommendSize(p,h,w,body,fit){
- const sizes=(Array.isArray(p.sizes)?p.sizes:[]).filter(s=>sizeRank(s)>=0).sort((a,b)=>sizeRank(a)-sizeRank(b));
- if(!sizes.length)return null;
- let bmi=w/Math.pow(h/100,2), base=bmi<20?1:bmi<23?2:bmi<26?3:bmi<30?4:5;
- if(h>=188)base+=1;if(h<168)base-=1;
- if(body==='broad'||body==='belly')base+=1;if(body==='slim')base-=0.25;
- if(fit==='relaxed'||fit==='oversized')base+=1;if(fit==='slim')base-=1;
- const target=['XS','S','M','L','XL','2XL','3XL','4XL'][Math.max(0,Math.min(7,Math.round(base)))];
- let best=sizes[0],dist=99;sizes.forEach(s=>{const d=Math.abs(sizeRank(s)-sizeRank(target));if(d<dist){dist=d;best=s}});
- return best;
+ const available=(Array.isArray(p.sizes)?p.sizes:[]).map(String);
+ const alpha=available.filter(s=>sizeRank(s)>=0);
+ const waist=numericWaistSizes(p);
+ const bmi=w/Math.pow(h/100,2);
+ let adj=0;if(body==='slim')adj-=1;if(body==='broad'||body==='belly')adj+=1;if(fit==='slim')adj+=1;if(fit==='relaxed'||fit==='oversized')adj-=1;
+ if(alpha.length){
+   let base=bmi<18.5?0:bmi<21.5?1:bmi<24.5?2:bmi<27.5?3:bmi<31?4:bmi<35?5:6;
+   if(h>=188&&base<6)base+=1;if(h<165&&base>0)base-=1;base=Math.max(0,Math.min(6,base+adj));
+   const target=GLOBAL_ALPHA_SIZE_CHART[base].size;let best=alpha[0],dist=99;
+   alpha.forEach(s=>{const d=Math.abs(sizeRank(s)-sizeRank(target));if(d<dist){dist=d;best=s}});
+   return best;
+ }
+ if(waist.length){
+   let inches=(w/Math.max(1,h))*61.5+3.5;
+   if(body==='slim')inches-=1;if(body==='belly')inches+=2;if(body==='broad')inches+=1;
+   if(fit==='slim')inches+=1;if(fit==='relaxed'||fit==='oversized')inches-=1;
+   let best=waist[0],dist=999;waist.forEach(s=>{const d=Math.abs(Number(s)-inches);if(d<dist){dist=d;best=s}});
+   return best;
+ }
+ return null;
+}
+function globalChartHtml(p){
+ const hasAlpha=(p.sizes||[]).some(s=>sizeRank(s)>=0),hasWaist=numericWaistSizes(p).length;
+ if(hasWaist)return '<details style="margin-top:12px"><summary><b>جدول المقاسات العالمي للبناطيل والشورتات</b></summary><div style="overflow:auto"><table style="width:100%;border-collapse:collapse;margin-top:8px"><tr><th>المقاس</th><th>الخصر سم (تقريبي)</th></tr>'+GLOBAL_WAIST_SIZES.map(s=>'<tr><td>'+s+'</td><td>'+Math.round(s*2.54)+'</td></tr>').join('')+'</table></div><p class="hint">التحويل عالمي تقريبي. جدول البراند الأصلي يظل المرجع الأدق عند توفره.</p></details>';
+ if(hasAlpha)return '<details style="margin-top:12px"><summary><b>جدول المقاسات العالمي XS–3XL</b></summary><div style="overflow:auto"><table style="width:100%;border-collapse:collapse;margin-top:8px"><tr><th>المقاس</th><th>الصدر سم</th><th>الخصر سم</th></tr>'+GLOBAL_ALPHA_SIZE_CHART.map(x=>'<tr><td>'+x.size+'</td><td>'+x.chest.join('–')+'</td><td>'+x.waist.join('–')+'</td></tr>').join('')+'</table></div><p class="hint">مرجع عالمي تقريبي وليس جدول المقاسات الرسمي للبراند.</p></details>';
+ return '<p class="hint">المنتج لا يستخدم مقاسات ملابس قياسية قابلة للترشيح.</p>';
 }
 function openSizeFinder(p){
  const old=JSON.parse(localStorage.getItem(BLNK_SIZE_PROFILE_KEY)||'{}');
  const box=document.getElementById('sizeFinderBox');if(!box)return;
- box.innerHTML=`<div style="padding:14px;border:1px solid #ddd;border-radius:14px;margin:10px 0"><b>BLNK Size Finder</b><p class="hint">مش لازم تعرف أنت L ولا XL. ادخل بياناتك وإحنا نرشح مقاس القطعة دي.</p><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px"><input id="sfHeight" type="number" inputmode="numeric" placeholder="الطول سم" value="${old.height||''}"><input id="sfWeight" type="number" inputmode="numeric" placeholder="الوزن كجم" value="${old.weight||''}"><select id="sfBody"><option value="average">جسم متوسط</option><option value="slim">رفيع</option><option value="broad">كتف/صدر عريض</option><option value="belly">بطن بارزة</option></select><select id="sfFit"><option value="regular">Regular</option><option value="slim">Slim</option><option value="relaxed">Relaxed</option><option value="oversized">Oversized</option></select></div><button id="sfGo" class="button button-dark full-button" type="button" style="margin-top:8px">اعرف مقاسي</button><div id="sfResult"></div></div>`;
+ box.innerHTML=`<div style="padding:14px;border:1px solid #ddd;border-radius:14px;margin:10px 0"><b>BLNK Size Finder</b><p class="hint">ادخل طولك ووزنك وبنية جسمك. هنرشح أقرب مقاس من المقاسات المتاحة للقطعة فقط.</p><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px"><input id="sfHeight" type="number" inputmode="numeric" placeholder="الطول سم" value="${old.height||''}"><input id="sfWeight" type="number" inputmode="numeric" placeholder="الوزن كجم" value="${old.weight||''}"><select id="sfBody"><option value="average">جسم متوسط</option><option value="slim">رفيع</option><option value="broad">كتف/صدر عريض</option><option value="belly">بطن بارزة</option></select><select id="sfFit"><option value="regular">Regular</option><option value="slim">Slim</option><option value="relaxed">Relaxed</option><option value="oversized">Oversized</option></select></div><button id="sfGo" class="button button-dark full-button" type="button" style="margin-top:8px">اعرف مقاسي</button><div id="sfResult"></div>${globalChartHtml(p)}</div>`;
  document.getElementById('sfBody').value=old.body||'average';document.getElementById('sfFit').value=old.fit||'regular';
- document.getElementById('sfGo').onclick=()=>{const h=Number(document.getElementById('sfHeight').value),w=Number(document.getElementById('sfWeight').value),body=document.getElementById('sfBody').value,fit=document.getElementById('sfFit').value;if(h<140||h>220||w<40||w>200){document.getElementById('sfResult').innerHTML='<p>راجع الطول والوزن.</p>';return}localStorage.setItem(BLNK_SIZE_PROFILE_KEY,JSON.stringify({height:h,weight:w,body,fit}));const s=recommendSize(p,h,w,body,fit);if(!s){document.getElementById('sfResult').innerHTML='<p>المنتج ده محتاج جدول قياسات قبل ما نقدر نرشح مقاس.</p>';return}document.getElementById('detailSize').value=s;document.getElementById('sfResult').innerHTML='<p style="font-size:18px"><b>مقاسك المقترح في القطعة دي: '+s+'</b></p><p class="hint">ترشيح تقريبي حسب بياناتك وقصة اللبس، وليس ضمانًا للملاءمة.</p>'};
+ document.getElementById('sfGo').onclick=()=>{const h=Number(document.getElementById('sfHeight').value),w=Number(document.getElementById('sfWeight').value),body=document.getElementById('sfBody').value,fit=document.getElementById('sfFit').value;if(h<140||h>220||w<40||w>200){document.getElementById('sfResult').innerHTML='<p>راجع الطول والوزن.</p>';return}localStorage.setItem(BLNK_SIZE_PROFILE_KEY,JSON.stringify({height:h,weight:w,body,fit}));const s=recommendSize(p,h,w,body,fit);if(!s){document.getElementById('sfResult').innerHTML='<p>القطعة دي لا تستخدم مقاسات ملابس قياسية قابلة للترشيح.</p>';return}document.getElementById('detailSize').value=s;document.getElementById('sfResult').innerHTML='<p style="font-size:18px"><b>مقاسك المقترح من المتاح: '+s+'</b></p><p class="hint">ترشيح تقريبي حسب الطول والوزن وبنية الجسم وقصة اللبس. لو للبراند جدول رسمي استخدمه كمرجع أدق.</p>'};
 }
-
 function openProduct(id){
  const p=products.find(x=>String(x.id)===String(id));if(!p)return;
  const sizes=Array.isArray(p.sizes)&&p.sizes.length?p.sizes:['One Size'];const colors=Array.isArray(p.colors)&&p.colors.length?p.colors:['Default'];const stock=Number(p.stock||0);
