@@ -1187,5 +1187,106 @@
     "sourceSku": "R213021",
     "active": true,
     "note": "متوفر للطلب عبر BLNK"
+  },
+  {
+    "id": "ravin-r220266",
+    "name": "Pristine White Oversized Crew-Neck Tee",
+    "category": "tshirt",
+    "price": 382.5,
+    "oldPrice": 849.99,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "colors": [
+      "White"
+    ],
+    "stock": 40,
+    "stockBySize": {
+      "S": 10,
+      "M": 10,
+      "L": 10,
+      "XL": 10
+    },
+    "image": "/api/source-image?url=https%3A%2F%2Fshop.iravin.com%2Fproducts%2Fr220266-s26m166-white-mstb",
+    "images": [],
+    "note": "External catalog item — operational BLNK stock only; brand stock is not represented.",
+    "lastPieces": false,
+    "active": true,
+    "brand": "RAVIN",
+    "external": true,
+    "sourceUrl": "https://shop.iravin.com/products/r220266-s26m166-white-mstb",
+    "sourcePrice": 382.5,
+    "sku": "R220266"
+  },
+  {
+    "id": "ravin-r219625",
+    "name": "White Ford Vintage Graphic Oversized T-Shirt",
+    "category": "tshirt",
+    "price": 360,
+    "oldPrice": 799.99,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "colors": [
+      "White"
+    ],
+    "stock": 40,
+    "stockBySize": {
+      "S": 10,
+      "M": 10,
+      "L": 10,
+      "XL": 10
+    },
+    "image": "/api/source-image?url=https%3A%2F%2Fshop.iravin.com%2Fproducts%2Fwhite-ford-graphic-oversized-t-shirt-r219625",
+    "images": [],
+    "note": "External catalog item — operational BLNK stock only; brand stock is not represented.",
+    "lastPieces": false,
+    "active": true,
+    "brand": "RAVIN",
+    "external": true,
+    "sourceUrl": "https://shop.iravin.com/products/white-ford-graphic-oversized-t-shirt-r219625",
+    "sourcePrice": 360,
+    "sku": "R219625"
+  },
+  {
+    "id": "ravin-r219550",
+    "name": "Dark Blue Wide Leg Washed Denim Jeans",
+    "category": "jeans",
+    "price": 800,
+    "oldPrice": 1599.99,
+    "sizes": [
+      "30",
+      "32",
+      "34",
+      "36",
+      "38"
+    ],
+    "colors": [
+      "D.Blue"
+    ],
+    "stock": 50,
+    "stockBySize": {
+      "30": 10,
+      "32": 10,
+      "34": 10,
+      "36": 10,
+      "38": 10
+    },
+    "image": "/api/source-image?url=https%3A%2F%2Fshop.iravin.com%2Fproducts%2Fr219550-s26m191-d-blue-mtj",
+    "images": [],
+    "note": "External catalog item — operational BLNK stock only; brand stock is not represented.",
+    "lastPieces": false,
+    "active": true,
+    "brand": "RAVIN",
+    "external": true,
+    "sourceUrl": "https://shop.iravin.com/products/r219550-s26m191-d-blue-mtj",
+    "sourcePrice": 800,
+    "sku": "R219550"
   }
 ]
