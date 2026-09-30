@@ -1,0 +1,186 @@
+<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"><title>BLNK حسابات الكمبيوتر</title><style>
+*{box-sizing:border-box}body{margin:0;background:#f3f6f4;color:#192e24;font-family:Arial,Tahoma,sans-serif}header{background:#173d2b;color:#fff;padding:18px;font-size:22px;font-weight:900}header span{color:#a9d2b8;font-size:14px;font-weight:500}main{padding:18px 14px 50px;max-width:700px;margin:auto}[hidden]{display:none!important}.pages{display:flex;gap:8px;margin-bottom:18px}.pages button{flex:1;border:1px solid #c9ded0;border-radius:10px;background:#fff;color:#315d40;padding:12px 4px;font-weight:800}.pages button.on{background:#174d34;color:#fff}.daily-summary{background:#e8f3eb;border-radius:11px;padding:14px;margin:12px 0;color:#234d33;font-weight:800;line-height:1.7}.daily-entry{border-top:1px solid #e4ebe5;padding:10px 0;display:flex;align-items:center;justify-content:space-between;gap:8px}.daily-entry button{border:1px solid #dac8c8;background:#fff;color:#a33;border-radius:7px;padding:5px 8px}.month-note{background:#fff4d8;border-radius:8px;padding:10px;color:#70521a;font-size:12px;line-height:1.6}.top{display:flex;justify-content:space-between;align-items:end;gap:10px}.top h1{font-size:25px;margin:0}.top small{color:#6d8474}.top label{font-size:12px;color:#547460}input{font:inherit}input[type=month]{border:1px solid #d6e4db;border-radius:8px;padding:7px;background:white;max-width:150px}.vault{background:#184a33;color:white;border-radius:16px;padding:22px;margin:17px 0;display:flex;flex-direction:column;gap:9px}.vault span{color:#c2e3cb}.vault strong{font-size:37px}.vault small{color:#b9d5c0;line-height:1.5}.mini{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:15px}.mini div{background:white;border:1px solid #e1e9e2;border-radius:11px;padding:13px;display:flex;flex-direction:column;gap:7px}.mini small{color:#728978}.mini strong{font-size:19px}.card{background:white;border:1px solid #dfe8e1;border-radius:14px;padding:17px;margin-bottom:14px}.card h2{font-size:19px;margin:0 0 17px}.fields{display:grid;grid-template-columns:1fr 1fr;gap:13px}.fields label,.row label,form>label{display:flex;flex-direction:column;gap:6px;color:#376047;font-size:13px;font-weight:800}.fields input,.row input,.row select,form>label input{width:100%;height:45px;border:1px solid #d4e2d8;border-radius:8px;padding:0 10px;outline-color:#3e9762;color:#193d2b}.fields label small{font-weight:400;color:#879b8c;font-size:11px;line-height:1.4}.actions{display:flex;flex-direction:column;gap:9px;margin-top:17px}button{font:inherit;cursor:pointer}.primary,.share{width:100%;border:0;border-radius:9px;padding:13px;color:#fff;font-weight:800;background:#174d34;min-height:46px}.share{background:#e4f3e8;color:#17643c;border:1px solid #b7d9bf}.row{display:flex;gap:9px}.row label{flex:1;min-width:0}.space{margin-top:10px}.explain{background:#fff;border:1px solid #dfebe1;border-radius:12px;padding:14px;margin:0 0 14px;color:#456b50;font-size:13px;line-height:1.7}.expense-total{padding:12px;background:#f2f7f3;border-radius:8px;margin-top:14px;display:flex;justify-content:space-between;gap:10px;color:#336047;font-weight:800}.status-good{color:#167c46}.status-bad{color:#aa3636}.toggle{display:flex;gap:5px;padding:4px;border-radius:9px;background:#edf3ee;margin-bottom:14px}.toggle button{flex:1;border:0;background:transparent;border-radius:7px;padding:9px;color:#65806b;font-weight:800}.toggle .on{background:white;color:#175939;box-shadow:0 2px 8px #0001}.help{font-size:12px;color:#819586;line-height:1.6}.person{display:grid;grid-template-columns:1fr auto;border-top:1px solid #eef2ef;padding:11px 0;gap:5px}.person small{grid-column:1;color:#839a89}.person strong{grid-column:2;grid-row:1/2;align-self:center;color:#176745}.person-actions{grid-column:2;display:flex;gap:8px}.person-actions button{border:1px solid #cbded0;background:#fff;border-radius:7px;padding:5px 9px;color:#176745}.person-actions button[data-delete-person]{color:#a33;border-color:#e7c8c8}.person-payment{grid-column:1/-1;display:flex;align-items:end;gap:7px;padding-top:8px}.person-payment label{flex:1;color:#376047;font-size:13px;font-weight:800}.person-payment input{display:block;width:100%;height:40px;border:1px solid #cbded0;border-radius:7px;padding:7px;margin-top:5px}.person-payment button{background:#174d34;border:0;border-radius:7px;color:white;padding:10px;font-weight:800}.person-payment button[data-cancel-pay]{background:#e8efe9;color:#174d34}.history{border-top:1px solid #e9efe9;margin-top:10px;padding-top:12px}.history summary{font-weight:800;color:#4d7055}.history>div>div{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px;padding:11px 0;border-bottom:1px solid #eff2ef;font-size:13px}.history>div>div>span:first-child{flex:1;min-width:130px;overflow-wrap:anywhere}.history>div>div>span:last-child{display:flex;gap:8px}.history button{border:0;background:transparent;color:#9a4e4e}.backup{display:flex;gap:8px;margin-top:18px}.backup button{flex:1;border:1px solid #cbded0;background:white;border-radius:8px;padding:10px;color:#356048;font-weight:700}.warn{font-size:12px;color:#7d8d80;line-height:1.5}#toast{position:fixed;bottom:15px;left:15px;right:15px;background:#174d34;color:white;padding:12px;border-radius:8px;text-align:center;display:none}@media(max-width:380px){.fields{gap:8px}.vault strong{font-size:31px}.top h1{font-size:22px}}
+ .person{display:block;border:1px solid #e1e9e2;border-radius:12px;margin:10px 0;padding:14px;background:#fbfdfb}.person b,.person small,.person strong{display:block;grid-column:auto;grid-row:auto}.person b{font-size:17px}.person small{margin:7px 0;line-height:1.5}.person strong{font-size:20px}.person-actions{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px}.person-actions button{min-height:38px;padding:7px 12px}.person-payment{margin-top:12px}.history>div{display:block}.report-actions{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:0 0 16px}.report-actions button{margin:0}.card>summary{font-size:17px;font-weight:800;color:#193d2b;cursor:pointer}.card>summary+*{margin-top:16px}@media(max-width:430px){.report-actions{grid-template-columns:1fr}.fields{grid-template-columns:1fr 1fr}.person-actions button{flex:1}.person-payment{flex-wrap:wrap}.person-payment label{flex-basis:100%}} @media(min-width:960px){main{max-width:1120px}#daily-page{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start}#daily-page>.top,#daily-page>.daily-summary,#daily-page>section:last-of-type,#daily-page>.backup{grid-column:1/-1}#daily-page>.card{margin:0}.fields{grid-template-columns:repeat(2,1fr)}} </style></head><body><header>BLNK <span>حسابات الكمبيوتر · بدون إنترنت</span></header><main><nav class="pages"><button id="daily-tab" class="on">تسجيل يومي</button><button id="close-tab">تقفيل الشهر</button></nav>
+<div id="daily-page">
+<div class="top"><div><small>حسابات BLNK</small><h1>سجل يومك</h1></div><label>التاريخ<br><input id="day-date" type="date"></label></div>
+<div class="daily-summary" id="day-summary"></div>
+<section class="card"><h2>١. أرقام اليوم</h2><div class="fields">
+<label>مبيعات اليوم<input id="day-sales" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0"></label>
+<label>تكلفة البضاعة المباعة اليوم<input id="day-cost" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0"></label>
+<label>بضاعة جديدة دفعتها اليوم<input id="day-purchases" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0"></label>
+<label>عدد القطع المباعة<input id="day-pieces" type="number" min="0" step="1" inputmode="numeric" placeholder="0"></label></div>
+<div class="actions"><button class="primary" id="day-save">حفظ اليوم</button></div>
+<p class="help">لكل يوم سجل واحد؛ لو رجعت لنفس التاريخ وعدّلت الأرقام، هتتحدث بدل ما تتكرر.</p></section>
+<section class="card"><h2>٢. مصروف اليوم</h2><div class="row"><label>البند<select id="day-expense-category"><option value="rent">إيجار</option><option value="electricity">كهرباء</option><option value="waleed">مسحوبات وليد</option><option value="shop-other">مصروف محل آخر</option><option value="personal-other">مصروف شخصي آخر</option></select></label><label>المبلغ<input id="day-expense-amount" type="number" min="0.01" step="0.01" inputmode="decimal" placeholder="0"></label></div>
+<div class="row space"><label>تفاصيل المصروف<input id="day-expense-note" placeholder="مثلاً فاتورة كهرباء"></label></div><div class="actions"><button class="primary" id="day-add-expense">إضافة المصروف</button></div></section>
+<section class="card"><h2>٣. فلوس العملاء اليوم</h2><div class="row"><label>الحركة<select id="day-person-kind"><option value="credit">عليه فلوس</option><option value="payment">دفع لي</option></select></label><label>اسم الشخص<input id="day-person" placeholder="الاسم"></label></div><div class="row space"><label>المبلغ<input id="day-amount" type="number" min="0.01" step="0.01" inputmode="decimal" placeholder="0"></label></div><div class="actions"><button class="primary" id="day-add-person">تسجيل الحركة</button></div></section>
+<section class="card"><h2>حركة اليوم</h2><div id="day-history"></div></section>
+<div class="backup"><button id="day-backup">نسخة احتياطية</button><button id="day-restore">استرجاع نسخة</button></div>
+</div><div id="closing-page" hidden><div class="top"><div><small>تقفيل المحل</small><h1>الخزنة فيها كام؟</h1></div><label>الشهر<br><input id="month" type="month"></label></div><div class="vault"><span>الخزنة آخر الشهر</span><strong id="vault">٠ ج</strong><small>رصيد أول الشهر + المبيعات − مصروفات المحل − المسحوبات الشخصية − البضاعة الجديدة − اللي على الناس + المحصل منهم</small></div><div class="mini"><div><small>ربح المحل</small><strong id="profit">٠ ج</strong></div><div><small>بعد مسحوبات وليد والشخصي</small><strong id="after-draw">٠ ج</strong></div><div><small>باقي عند الناس</small><strong id="owed">٠ ج</strong></div><div><small>الوضع</small><strong id="status">—</strong></div></div><div class="explain" id="calculation"></div>
+<div class="report-actions"><button class="primary" id="pdf">حفظ تقرير PDF</button><button class="share" id="share">إرسال التقفيل على واتساب</button></div><details class="card"><summary>رصيد أول الشهر وتعديل الأرقام الشهرية</summary><p id="month-daily-summary" class="daily-summary"></p><p class="month-note">مبيعات وتكلفة وبضاعة الأيام اللي سجلتها في صفحة «تسجيل يومي» بتتجمع تلقائيًا هنا. الخانات الجاية لأي إجمالي من قبل التسجيل اليومي فقط؛ ما تكررش نفس الأرقام.</p><div class="fields"><label>رصيد أول الشهر<small>الخزنة في أول الشهر</small><input data-field="opening" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0"></label><label>إجمالي المبيعات<input data-field="sales" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0"></label><label>تكلفة البضاعة المباعة<small>تحدد الربح ولا تتخصم مرة ثانية من الخزنة</small><input data-field="cost" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0"></label><label>بضاعة جديدة مدفوعة<small>تتخصم من الخزنة وتفضل مخزون</small><input data-field="purchases" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0"></label></div><div class="actions"><button class="primary" id="save">حفظ أرقام الشهر</button></div></details>
+<section class="card"><h2>مصروفات الشهر</h2><div id="expense-summary"></div><details><summary>إضافة مصروف للشهر</summary><div class="row space"><label>التاريخ<input id="expense-date" type="date"></label><label>البند<select id="expense-category"><option value="rent">إيجار</option><option value="electricity">كهرباء</option><option value="waleed">مسحوبات وليد</option><option value="shop-other">مصروف محل آخر</option><option value="personal-other">مصروف شخصي آخر</option></select></label></div><div class="row space"><label>المبلغ بالجنيه<input id="expense-amount" type="number" min="0.01" step="0.01" inputmode="decimal" placeholder="0"></label><label>تفاصيل المصروف (اختياري)<input id="expense-note" placeholder="مثلاً فاتورة كهرباء"></label></div><div class="actions"><button class="primary" id="add-expense">إضافة المصروف</button></div></details><details class="history"><summary>تفاصيل مصروفات الشهر</summary><div id="expense-history"></div></details></section>
+<section class="card"><h2>فلوسك عند الناس</h2><p class="help">اللي دفع تضغط «دفع لي» جنب اسمه؛ المدفوع يتسجل والباقي يفضل عليه.</p><div id="people"></div><details><summary>إضافة مبلغ على عميل</summary><div class="row space"><label>اسم الشخص<input id="person" placeholder="الاسم"></label><label>المبلغ<input id="amount" type="number" min="0.01" step="0.01" inputmode="decimal" placeholder="0"></label></div><div class="actions"><button class="primary" id="add">تسجيل</button></div><p class="help">لو البيع داخل في المبيعات ولسه ما اتحصلش، سجله عليه.</p></details><details class="history"><summary>حركة العملاء خلال الشهر</summary><div id="history"></div></details></section><div class="backup"><button id="backup">نسخة احتياطية</button><button id="restore">استرجاع نسخة</button></div><p class="warn">البيانات محفوظة على الموبايل فقط. اعمل نسخة احتياطية بانتظام، خصوصًا قبل تغيير الموبايل أو حذف التطبيق.</p></div></main><div id="toast"></div><script>
+const BLNK={
+ read(){try{return localStorage.getItem('blnk-ledger-desktop-v1')||'{"months":{},"people":[],"expenses":[],"daily":[]}'}catch(e){return '{"months":{},"people":[],"expenses":[],"daily":[]}' }},
+ write(json){try{localStorage.setItem('blnk-ledger-desktop-v1',json);return true}catch(e){alert('المتصفح منع حفظ البيانات. احفظ نسخة احتياطية.');return false}},
+ backup(){const data=this.read(),blob=new Blob([data],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='BLNK-accounts-backup.json';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),5000)},
+ restore(){let input=document.createElement('input');input.type='file';input.accept='.json,application/json';input.onchange=async()=>{try{let file=input.files&&input.files[0];if(!file)return;let raw=await file.text(),obj=JSON.parse(raw);if(!obj.months||!Array.isArray(obj.people))throw Error();if(this.write(raw))window.restoreFromAndroid(raw)}catch(e){alert('الملف مش نسخة BLNK صحيحة')}};input.click()},
+ share(text){let a=document.createElement('a');a.href='https://wa.me/?text='+encodeURIComponent(text);a.target='_blank';a.rel='noopener';document.body.appendChild(a);a.click();a.remove()},
+ printPdf(html,month){let w=window.open('','_blank');if(!w){alert('اسمح للنوافذ المنبثقة علشان تحفظ PDF');return}w.document.open();w.document.write(html);w.document.close();w.onload=()=>setTimeout(()=>w.print(),300)}
+};
+</script><script>
+
+const empty=()=>({opening:0,sales:0,shop:0,personal:0,cost:0,purchases:0});
+let state;try{state=JSON.parse(BLNK.read())}catch(e){state={months:{},people:[],expenses:[]}}
+if(!state||typeof state!=='object'||!state.months||!Array.isArray(state.people))state={months:{},people:[],expenses:[]};
+if(!Array.isArray(state.expenses))state.expenses=[];
+if(!Array.isArray(state.daily))state.daily=[];
+const $=id=>document.getElementById(id),fmt=n=>new Intl.NumberFormat('ar-EG',{maximumFractionDigits:2}).format(n/100)+' ج';
+const today=()=>new Date().toLocaleDateString('en-CA',{timeZone:'Africa/Cairo'});
+let month=today().slice(0,7),kind='credit',dirty=false,payingPerson=null,activePage='daily';$('month').value=month;
+const categories={rent:'إيجار',electricity:'كهرباء',waleed:'مسحوبات وليد','shop-other':'مصروف محل آخر','personal-other':'مصروف شخصي آخر'};
+const personalCategory=k=>k==='waleed'||k==='personal-other';
+const sum=a=>a.reduce((n,x)=>n+x.amount,0);
+function notify(msg){$('toast').textContent=msg;$('toast').style.display='block';setTimeout(()=>$('toast').style.display='none',3500)}
+function escapeHtml(v){return String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function values(){let v=Object.assign({},state.months[month]||empty());document.querySelectorAll('[data-field]').forEach(x=>v[x.dataset.field]=Math.max(0,Math.round(Number(x.value||0)*100)));return v}
+function balances(){let map={};for(let x of state.people){let p=map[x.name]||(map[x.name]={owed:0,paid:0});if(x.kind==='credit')p.owed+=x.amount;else p.paid+=x.amount}return map}
+function totals(){
+ let v=values(),daily=state.daily.filter(x=>x.date.startsWith(month)),pieces=daily.reduce((n,x)=>n+(x.pieces||0),0);for(let field of ['sales','cost','purchases'])v[field]+=daily.reduce((n,x)=>n+(x[field]||0),0);let people=state.people.filter(x=>x.month===month),expenses=state.expenses.filter(x=>x.month===month);
+ let debt=sum(people.filter(x=>x.kind==='credit')),paid=sum(people.filter(x=>x.kind==='payment'));
+ let shop=(v.shop||0)+sum(expenses.filter(x=>!personalCategory(x.category))),personal=(v.personal||0)+sum(expenses.filter(x=>personalCategory(x.category)));
+ let all=Object.values(balances()).reduce((a,x)=>a+x.owed-x.paid,0);
+ let gross=v.sales-v.cost,profit=gross-shop,after=profit-personal;
+ return {v,daily,pieces,people,expenses,debt,paid,shop,personal,all,gross,profit,after,vault:v.opening+v.sales-shop-personal-v.purchases-debt+paid};
+}
+function render(){
+ let t=totals();$('month-daily-summary').textContent='المسجل يوميًا: مبيعات '+fmt(sumField(t.daily,'sales'))+' · تكلفة مباعة '+fmt(sumField(t.daily,'cost'))+' · بضاعة جديدة '+fmt(sumField(t.daily,'purchases'))+' · قطع '+t.pieces+'. الإجمالي فوق شامل الأرقام اليومية والأرقام الإضافية.';$('vault').textContent=fmt(t.vault);$('profit').textContent=fmt(t.profit);$('after-draw').textContent=fmt(t.after);$('owed').textContent=fmt(t.all);
+ $('status').textContent=t.profit<0?'خسارة':t.vault<0?'عجز خزنة':t.profit===0?'تعادل':'كسبان';
+ $('status').className=t.profit<0||t.vault<0?'status-bad':'status-good';
+ $('calculation').textContent='الربح = '+fmt(t.v.sales)+' مبيعات − '+fmt(t.v.cost)+' تكلفة بضاعة مباعة − '+fmt(t.shop)+' مصروفات محل = '+fmt(t.profit)+'؛ وبعد '+fmt(t.personal)+' مسحوبات شخصية يتبقى '+fmt(t.after)+'. الخزنة = '+fmt(t.vault)+'، والناس عليهم '+fmt(t.all)+'.';
+ let byCategory={};for(let x of t.expenses)byCategory[x.category]=(byCategory[x.category]||0)+x.amount;
+ $('expense-summary').innerHTML='<div class="expense-total"><span>مصروفات المحل: '+fmt(t.shop)+'</span><span>شخصية: '+fmt(t.personal)+'</span></div>';
+ $('expense-history').innerHTML=t.expenses.slice().reverse().map(x=>'<div><span>'+escapeHtml(x.date)+' · '+escapeHtml(categories[x.category]||x.category)+(x.note?' — '+escapeHtml(x.note):'')+' · '+fmt(x.amount)+'</span><button data-expense="'+escapeHtml(x.id)+'">حذف</button></div>').join('')||'<p class="help">لسه مفيش مصروفات مسجلة.</p>';
+ let map=balances();
+ $('people').innerHTML=Object.keys(map).sort().map(name=>'<div class="person"><b>'+escapeHtml(name)+'</b><small>عليه '+fmt(map[name].owed)+' · دفع '+fmt(map[name].paid)+'</small><strong>الباقي '+fmt(map[name].owed-map[name].paid)+'</strong><span class="person-actions">'+(map[name].owed-map[name].paid>0?'<button data-pay-person="'+escapeHtml(name)+'">دفع لي</button>':'')+'<button data-edit-person="'+escapeHtml(name)+'">تعديل</button><button data-delete-person="'+escapeHtml(name)+'">مسح</button></span>'+(payingPerson===name?'<div class="person-payment"><label>دفع كام؟<input data-pay-amount="'+escapeHtml(name)+'" type="number" min="0.01" step="0.01" inputmode="decimal" placeholder="المبلغ المدفوع"></label><button data-save-pay="'+escapeHtml(name)+'">حفظ</button><button data-cancel-pay="'+escapeHtml(name)+'">إلغاء</button></div>':'')+'</div>').join('')||'<p class="help">لسه مفيش فلوس مسجلة على حد.</p>';
+ renderDaily();
+ $('history').innerHTML=t.people.slice().reverse().map(x=>'<div><span>'+escapeHtml(x.name)+' · '+(x.kind==='credit'?'عليه':'دفع')+' '+fmt(x.amount)+'</span><span><button data-edit="'+escapeHtml(x.id)+'">تعديل</button><button data-delete="'+escapeHtml(x.id)+'">حذف</button></span></div>').join('')||'<p class="help">مفيش حركة.</p>';
+}
+function store(){let ok=BLNK.write(JSON.stringify(state));if(!ok)notify('تعذر الحفظ؛ اعمل نسخة احتياطية وحاول تاني.');return ok}
+
+function sumField(list,key){return list.reduce((n,x)=>n+(x[key]||0),0)}
+function dayRecord(){return state.daily.find(x=>x.date===$('day-date').value)}
+function loadDay(){let d=dayRecord();for(let field of ['sales','cost','purchases','pieces'])$('day-'+field).value=d&&d[field]?(field==='pieces'?d[field]:d[field]/100):''}
+function setPage(page){activePage=page;$('daily-page').hidden=page!=='daily';$('closing-page').hidden=page!=='closing';$('daily-tab').classList.toggle('on',page==='daily');$('close-tab').classList.toggle('on',page==='closing');window.scrollTo(0,0)}
+function renderDaily(){let date=$('day-date').value;if(!date)return;let d=dayRecord()||{sales:0,cost:0,purchases:0,pieces:0},expense=state.expenses.filter(x=>x.date===date),people=state.people.filter(x=>x.date===date);
+ let shop=sum(expense.filter(x=>!personalCategory(x.category))),personal=sum(expense.filter(x=>personalCategory(x.category))),credit=sum(people.filter(x=>x.kind==='credit')),paid=sum(people.filter(x=>x.kind==='payment'));
+ $('day-summary').textContent='مبيعات '+fmt(d.sales)+' · '+(d.pieces||0)+' قطعة · مصروف محل '+fmt(shop)+' · شخصي '+fmt(personal)+' · بضاعة جديدة '+fmt(d.purchases)+' · حركة النقد '+fmt(d.sales-shop-personal-d.purchases-credit+paid);
+ let rows=[];
+ for(let x of expense)rows.push('<div class="daily-entry"><span>مصروف: '+escapeHtml(categories[x.category]||x.category)+(x.note?' ('+escapeHtml(x.note)+')':'')+' · '+fmt(x.amount)+'</span><button data-day-expense="'+escapeHtml(x.id)+'">مسح</button></div>');
+ for(let x of people)rows.push('<div class="daily-entry"><span>'+escapeHtml(x.name)+' · '+(x.kind==='credit'?'عليه':'دفع')+' '+fmt(x.amount)+'</span><button data-day-person="'+escapeHtml(x.id)+'">مسح</button></div>');
+ $('day-history').innerHTML=rows.join('')||'<p class="help">لسه مفيش مصروفات أو فلوس عملاء في اليوم ده.</p>';
+}
+$('daily-tab').onclick=()=>setPage('daily');
+$('close-tab').onclick=()=>setPage('closing');
+$('day-date').onchange=()=>{let date=$('day-date').value;if(!date)return;if(!date.startsWith(month)){if(dirty&&!confirm('في أرقام شهرية ما اتحفظتش. تسيبها؟')){$('day-date').value=today().startsWith(month)?today():month+'-01';return}month=date.slice(0,7);$('month').value=month;openMonth();$('day-date').value=date}loadDay();render()};
+$('day-save').onclick=()=>{let date=$('day-date').value;if(!date||!date.startsWith(month)){notify('راجع التاريخ');return}
+ let record={date};for(let key of ['sales','cost','purchases','pieces']){let raw=$('day-'+key).value,n=Number(raw||0);if(!Number.isFinite(n)||n<0||(key==='pieces'&&!Number.isInteger(n))){notify('راجع أرقام اليوم');return}record[key]=key==='pieces'?n:Math.round(n*100)}
+ let index=state.daily.findIndex(x=>x.date===date),previous=index>=0?state.daily[index]:null;
+ if(index>=0)state.daily[index]=record;else state.daily.push(record);
+ if(store()){notify('اتحفظ اليوم واتحدث تقفيل الشهر');render()}else if(index>=0)state.daily[index]=previous;else state.daily.pop()
+};
+$('day-add-expense').onclick=()=>{let date=$('day-date').value,category=$('day-expense-category').value,amount=Math.round(Number($('day-expense-amount').value)*100),note=$('day-expense-note').value.trim();
+ if(!date||!date.startsWith(month)||!categories[category]||!Number.isFinite(amount)||amount<=0){notify('راجع بند المصروف والمبلغ');return}
+ state.expenses.push({id:String(Date.now())+Math.random().toString(36).slice(2),month,date,category,note,amount});
+ if(store()){$('day-expense-amount').value='';$('day-expense-note').value='';notify('اتسجل المصروف');render()}else state.expenses.pop()
+};
+$('day-add-person').onclick=()=>{let date=$('day-date').value,name=$('day-person').value.trim(),kind=$('day-person-kind').value,amount=Math.round(Number($('day-amount').value)*100);
+ if(!date||!date.startsWith(month)||!name||!Number.isFinite(amount)||amount<=0){notify('راجع التاريخ والاسم والمبلغ');return}
+ let b=balances()[name],remaining=b?b.owed-b.paid:0;
+ if(kind==='payment'&&amount>remaining){notify('الباقي على '+name+' هو '+fmt(remaining));return}
+ state.people.push({id:String(Date.now())+Math.random().toString(36).slice(2),month,date,name,kind,amount});
+ if(store()){$('day-amount').value='';notify('اتسجلت الحركة');render()}else state.people.pop()
+};
+$('day-history').onclick=e=>{let expenseId=e.target.dataset.dayExpense,personId=e.target.dataset.dayPerson;if(!expenseId&&!personId)return;if(!confirm('تمسح الحركة دي؟ هيتحدث تقفيل الشهر.'))return;
+ let list=expenseId?state.expenses:state.people,previous=list.slice(),next=list.filter(x=>x.id!==(expenseId||personId));if(expenseId)state.expenses=next;else state.people=next;
+ if(store()){notify('اتمسحت الحركة');render()}else if(expenseId)state.expenses=previous;else state.people=previous
+};
+$('day-backup').onclick=()=>BLNK.backup();
+$('day-restore').onclick=()=>{if(confirm('استرجاع نسخة هيستبدل البيانات الحالية. تكمل؟'))BLNK.restore()};
+function openMonth(){document.querySelectorAll('[data-field]').forEach(x=>{let n=(state.months[month]||empty())[x.dataset.field]||0;x.value=n?n/100:''});$('expense-date').value=today().startsWith(month)?today():month+'-01';dirty=false;let d=$('day-date').value;if(!d||!d.startsWith(month))$('day-date').value=today().startsWith(month)?today():month+'-01';loadDay();render()}
+$('month').onchange=e=>{if(dirty&&!confirm('في أرقام ما اتحفظتش. تسيبها؟')){e.target.value=month;return}month=e.target.value;payingPerson=null;openMonth()};
+document.querySelectorAll('[data-field]').forEach(x=>x.oninput=()=>{dirty=true;render()});
+$('save').onclick=()=>{let previous=state.months[month];state.months[month]=values();if(store()){dirty=false;notify('اتحفظت أرقام الشهر');render()}else if(previous)state.months[month]=previous;else delete state.months[month]};
+$('add-expense').onclick=()=>{
+ let date=$('expense-date').value,category=$('expense-category').value,amount=Math.round(Number($('expense-amount').value)*100),note=$('expense-note').value.trim();
+ if(!date||!date.startsWith(month)||!categories[category]||!Number.isFinite(amount)||amount<=0){notify('راجع تاريخ الشهر والبند والمبلغ');return}
+ state.expenses.push({id:String(Date.now())+Math.random().toString(36).slice(2),month,date,category,note,amount});
+ if(store()){$('expense-amount').value='';$('expense-note').value='';notify('اتسجل المصروف');render()}else state.expenses.pop();
+};
+$('expense-history').onclick=e=>{let id=e.target.dataset.expense;if(!id||!confirm('تحذف المصروف؟'))return;let old=state.expenses;state.expenses=old.filter(x=>x.id!==id);if(store())render();else state.expenses=old};
+
+$('add').onclick=()=>{let name=$('person').value.trim(),amount=Math.round(Number($('amount').value)*100);if(!name||!Number.isFinite(amount)||amount<=0){notify('اكتب الاسم والمبلغ');return}state.people.push({id:String(Date.now())+Math.random().toString(36).slice(2),month,name,kind,amount});if(store()){$('amount').value='';notify('اتسجل المبلغ');render()}else state.people.pop()};
+$('people').onclick=e=>{let button=e.target.closest('button');if(!button)return;
+ let payName=button.dataset.payPerson,saveName=button.dataset.savePay,cancelName=button.dataset.cancelPay;
+ if(payName){payingPerson=payName;render();let input=Array.from($('people').querySelectorAll('[data-pay-amount]')).find(x=>x.dataset.payAmount===payName);if(input)input.focus();return}
+ if(cancelName){payingPerson=null;render();return}
+ if(saveName){let input=Array.from($('people').querySelectorAll('[data-pay-amount]')).find(x=>x.dataset.payAmount===saveName),amount=Math.round(Number(input&&input.value)*100),p=balances()[saveName],remaining=p?p.owed-p.paid:0;
+  if(!Number.isFinite(amount)||amount<=0||amount>remaining){notify('اكتب مبلغ من ١ قرش لحد الباقي على العميل: '+fmt(remaining));return}
+  state.people.push({id:String(Date.now())+Math.random().toString(36).slice(2),month,name:saveName,kind:'payment',amount});
+  if(store()){payingPerson=null;notify('اتسجل التحصيل والباقي اتحدث');render()}else state.people.pop();return}
+ let oldName=button.dataset.editPerson||button.dataset.deletePerson;if(!oldName)return;
+ let entries=state.people.filter(x=>x.name===oldName);
+ if(button.dataset.editPerson){let newName=prompt('الاسم الصحيح للعميل',oldName);if(newName===null)return;newName=newName.trim();if(!newName){notify('اكتب اسم العميل');return}if(newName===oldName)return;entries.forEach(x=>x.name=newName);if(store()){notify('اتعدل اسم العميل في كل حركاته');render()}else entries.forEach(x=>x.name=oldName)}
+ else if(confirm('مسح '+oldName+' وكل حركاته في جميع الشهور؟ ده هيغير الخزنة والتقفيل.')){let old=state.people;state.people=old.filter(x=>x.name!==oldName);if(store()){notify('اتمسح العميل وحركاته');render()}else state.people=old}
+};
+$('history').onclick=e=>{let editId=e.target.dataset.edit;if(editId){let x=state.people.find(row=>row.id===editId);if(!x)return;let entered=prompt('المبلغ الصحيح لـ '+x.name+' ('+(x.kind==='credit'?'عليه':'دفع')+')',String(x.amount/100));if(entered===null)return;let amount=Math.round(Number(entered)*100);if(!Number.isFinite(amount)||amount<=0){notify('اكتب مبلغ صحيح');return}let previous=x.amount;x.amount=amount;if(store()){notify('اتعدل المبلغ');render()}else x.amount=previous;return}let id=e.target.dataset.delete;if(!id||!confirm('تحذف العملية؟ ده هيغير الخزنة والتقفيل.'))return;let old=state.people;state.people=old.filter(x=>x.id!==id);if(store())render();else state.people=old};
+
+function pdfTable(headers,rows){return '<table><thead><tr>'+headers.map(x=>'<th>'+escapeHtml(x)+'</th>').join('')+'</tr></thead><tbody>'+(rows.length?rows.map(row=>'<tr>'+row.map(x=>'<td>'+escapeHtml(x)+'</td>').join('')+'</tr>').join(''):'<tr><td colspan="'+headers.length+'">لا يوجد</td></tr>')+'</tbody></table>'}
+function reportHtml(t){
+ let v=t.v,shopEntries=t.expenses.filter(x=>!personalCategory(x.category)),draws=t.expenses.filter(x=>personalCategory(x.category)),balancesMap=balances();
+ let section=(title,body)=>'<section><h2>'+escapeHtml(title)+'</h2>'+body+'</section>';
+ let summary=pdfTable(['البند','القيمة'],[
+ ['رصيد أول الشهر',fmt(v.opening)],['المبيعات',fmt(v.sales)],['تكلفة البضاعة المباعة',fmt(v.cost)],
+ ['مجمل الربح',fmt(t.gross)],['مصروفات المحل',fmt(t.shop)],['صافي ربح المحل',fmt(t.profit)],
+ ['مسحوبات وليد والشخصي',fmt(t.personal)],['بعد المسحوبات الشخصية',fmt(t.after)],
+ ['بضاعة جديدة مدفوعة',fmt(v.purchases)],['قطع مباعة',String(t.pieces)],
+ ['مبيعات على الحساب هذا الشهر',fmt(t.debt)],['تحصيلات من العملاء هذا الشهر',fmt(t.paid)],
+ ['المتبقي عند كل الناس',fmt(t.all)],['الخزنة المحسوبة آخر الشهر',fmt(t.vault)]]);
+ let expensesRows=list=>list.map(x=>[x.date||x.month||'',categories[x.category]||x.category,x.note||'—',fmt(x.amount)]);
+ let customerRows=Object.keys(balancesMap).sort().map(name=>[name,fmt(balancesMap[name].owed),fmt(balancesMap[name].paid),fmt(balancesMap[name].owed-balancesMap[name].paid)]);
+ let dailyRows=t.daily.slice().sort((a,b)=>a.date.localeCompare(b.date)).map(x=>[x.date,fmt(x.sales),fmt(x.cost),fmt(x.purchases),String(x.pieces||0)]);
+ let customerMoves=t.people.slice().sort((a,b)=>(a.date||a.month).localeCompare(b.date||b.month)).map(x=>[x.date||x.month,x.name,x.kind==='credit'?'عليه':'دفع',fmt(x.amount)]);
+ return '<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><style>@page{size:A4;margin:14mm}body{font-family:Arial,Tahoma,sans-serif;color:#193d2b;font-size:12px;line-height:1.55}h1{font-size:23px;margin:0 0 3px}h2{font-size:16px;border-bottom:2px solid #185238;padding-bottom:4px;margin:24px 0 9px}p{margin:6px 0}section{break-inside:avoid-page}table{border-collapse:collapse;width:100%;table-layout:fixed;direction:rtl}th,td{border:1px solid #d6e4da;padding:7px;vertical-align:top;overflow-wrap:anywhere;text-align:right}th{background:#eaf4ed}tr{break-inside:avoid}.total{background:#eaf4ed;border-radius:8px;padding:10px;font-size:15px;font-weight:bold}.note{color:#557363}</style></head><body>'+
+ '<h1>BLNK | تقفيل شهر '+escapeHtml(month)+'</h1><p class="note">تقرير حسابات أوفلاين · كل القيم بالجنيه المصري</p>'+
+ '<p class="total">ربح المحل '+escapeHtml(fmt(t.profit))+' · الخزنة المحسوبة '+escapeHtml(fmt(t.vault))+' · باقي عند الناس '+escapeHtml(fmt(t.all))+'</p>'+
+ section('ملخص الشهر',summary)+
+ section('أرقام كل يوم',pdfTable(['التاريخ','المبيعات','تكلفة المباعة','البضاعة الجديدة','القطع'],dailyRows))+
+ section('مصروفات المحل بند بند',pdfTable(['التاريخ','البند','البيان','المبلغ'],expensesRows(shopEntries).concat(v.shop?[['—','مصروفات شهرية قديمة','مدخلة إجماليًا',fmt(v.shop)]]:[])))+
+ section('المسحوبات والمصروفات الشخصية بند بند',pdfTable(['التاريخ','البند','البيان','المبلغ'],expensesRows(draws).concat(v.personal?[['—','مسحوبات شهرية قديمة','مدخلة إجماليًا',fmt(v.personal)]]:[])))+
+ section('حساب كل عميل',pdfTable(['العميل','إجمالي عليه','إجمالي دفع','الباقي عليه'],customerRows))+
+ section('حركات العملاء خلال الشهر',pdfTable(['التاريخ','العميل','نوع الحركة','المبلغ'],customerMoves))+
+ '<p class="note">حساب الخزنة = رصيد أول الشهر + المبيعات − مصروفات المحل − المسحوبات الشخصية − البضاعة الجديدة − المبيعات الآجلة لهذا الشهر + التحصيلات. تكلفة البضاعة المباعة تدخل في الربح فقط.</p></body></html>'
+}
+$('pdf').onclick=()=>{if(dirty){notify('احفظ أرقام الشهر الأول');return}BLNK.printPdf(reportHtml(totals()),month)};
+$('share').onclick=()=>{
+ if(dirty){notify('احفظ أرقام الشهر الأول');return}
+ let t=totals(),v=t.v,lines=['*تقفيل BLNK — '+month+'*','رصيد أول الشهر: '+fmt(v.opening),'المبيعات: '+fmt(v.sales),'تكلفة البضاعة المباعة: '+fmt(v.cost),'مجمل الربح: '+fmt(t.gross),'','*مصروفات المحل:*'];
+ let shopEntries=t.expenses.filter(x=>!personalCategory(x.category)),draws=t.expenses.filter(x=>personalCategory(x.category));
+ if(v.shop)lines.push('مصروفات محل مسجلة سابقًا: '+fmt(v.shop));
+ shopEntries.forEach(x=>lines.push('• '+x.date+' | '+categories[x.category]+(x.note?' ('+x.note+')':'')+': '+fmt(x.amount)));
+ if(!shopEntries.length&&!v.shop)lines.push('لا يوجد');
+ lines.push('إجمالي مصروفات المحل: '+fmt(t.shop),'*ربح المحل = المبيعات − تكلفة المباعة − مصروفات المحل = '+fmt(t.profit)+'*','','*المسحوبات والمصروفات الشخصية:*');
+ if(v.personal)lines.push('مسحوبات مسجلة سابقًا: '+fmt(v.personal));
+ draws.forEach(x=>lines.push('• '+x.date+' | '+categories[x.category]+(x.note?' ('+x.note+')':'')+': '+fmt(x.amount)));
+ if(!draws.length&&!v.personal)lines.push('لا يوجد');
+ lines.push('إجمالي الشخصي: '+fmt(t.personal),'المتبقي بعد الشخصي: '+fmt(t.after),'','بضاعة جديدة مدفوعة: '+fmt(v.purchases),'على العملاء هذا الشهر: '+fmt(t.debt),'المحصل منهم هذا الشهر: '+fmt(t.paid),'');
+ lines.push('*حساب كل شخص:*');
+ let map=balances(),names=Object.keys(map).sort();if(!names.length)lines.push('لا يوجد');
+ names.forEach(name=>lines.push('• '+name+': عليه '+fmt(map[name].owed)+' | دفع '+fmt(map[name].paid)+' | الباقي '+fmt(map[name].owed-map[name].paid)));
+ lines.push('القطع المباعة: '+t.pieces);if(t.daily.length){lines.push('*أرقام الأيام:*');t.daily.slice().sort((a,b)=>a.date.localeCompare(b.date)).forEach(x=>lines.push('• '+x.date+': مبيعات '+fmt(x.sales)+' | تكلفة مباعة '+fmt(x.cost)+' | بضاعة جديدة '+fmt(x.purchases)+' | قطع '+x.pieces))}lines.push('إجمالي الباقي عند الناس: '+fmt(t.all),'','*الخزنة = أول الشهر + المبيعات − مصروفات المحل − الشخصي − البضاعة الجديدة − ديون الشهر + التحصيلات = '+fmt(t.vault)+'*');
+ lines.push('الوضع: '+$('status').textContent);BLNK.share(lines.join('\n'));
+};
+$('backup').onclick=()=>BLNK.backup();$('restore').onclick=()=>{if(confirm('استرجاع نسخة هيستبدل البيانات الحالية. تكمل؟'))BLNK.restore()};
+window.restoreFromAndroid=json=>{try{let parsed=JSON.parse(json);if(!parsed.months||!Array.isArray(parsed.people))throw Error();state=parsed;if(!Array.isArray(state.expenses))state.expenses=[];if(!Array.isArray(state.daily))state.daily=[];openMonth();notify('اترجعت البيانات')}catch(e){notify('تعذر استرجاع النسخة')}};
+$('day-date').value=today();openMonth();setPage('daily');
+</script></body></html>
