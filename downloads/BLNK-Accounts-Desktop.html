@@ -9,7 +9,7 @@
 <label>تكلفة البضاعة المباعة اليوم<input id="day-cost" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0"></label>
 <label>بضاعة جديدة دفعتها اليوم<input id="day-purchases" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0"></label>
 <label>عدد القطع المباعة<input id="day-pieces" type="number" min="0" step="1" inputmode="numeric" placeholder="0"></label></div>
-<div class="actions"><button class="primary" id="day-save">حفظ اليوم</button></div>
+<div class="actions"><button class="primary" id="day-save">حفظ اليوم</button><button class="share" id="day-share">إرسال تقفيل اليوم على واتساب</button></div>
 <p class="help">لكل يوم سجل واحد؛ لو رجعت لنفس التاريخ وعدّلت الأرقام، هتتحدث بدل ما تتكرر.</p></section>
 <section class="card"><h2>٢. مصروف اليوم</h2><div class="row"><label>البند<select id="day-expense-category"><option value="rent">إيجار</option><option value="electricity">كهرباء</option><option value="waleed">مسحوبات وليد</option><option value="shop-other">مصروف محل آخر</option><option value="personal-other">مصروف شخصي آخر</option></select></label><label>المبلغ<input id="day-expense-amount" type="number" min="0.01" step="0.01" inputmode="decimal" placeholder="0"></label></div>
 <div class="row space"><label>تفاصيل المصروف<input id="day-expense-note" placeholder="مثلاً فاتورة كهرباء"></label></div><div class="actions"><button class="primary" id="day-add-expense">إضافة المصروف</button></div></section>
@@ -111,6 +111,19 @@ $('day-save').onclick=()=>{let date=$('day-date').value;if(!date||!date.startsWi
  let index=state.daily.findIndex(x=>x.date===date),previous=index>=0?state.daily[index]:null;
  if(index>=0)state.daily[index]=record;else state.daily.push(record);
  if(store()){notify('اتحفظ اليوم واتحدث تقفيل الشهر');render()}else if(index>=0)state.daily[index]=previous;else state.daily.pop()
+};
+
+$('day-share').onclick=()=>{
+ let date=$('day-date').value;if(!date){notify('اختَر التاريخ');return}
+ let d=dayRecord()||{sales:0,cost:0,purchases:0,pieces:0};
+ for(let field of ['sales','cost','purchases','pieces']){let entered=Number($('day-'+field).value||0),saved=field==='pieces'?(d[field]||0):(d[field]||0)/100;
+  if(!Number.isFinite(entered)||Math.abs(entered-saved)>0.001){notify('احفظ أرقام اليوم الأول قبل الإرسال');return}}
+ let expenses=state.expenses.filter(x=>x.date===date),shop=sum(expenses.filter(x=>!personalCategory(x.category))),personal=sum(expenses.filter(x=>personalCategory(x.category)));
+ let lines=['*تقفيل BLNK اليومي — '+date+'*','المبيعات: '+fmt(d.sales||0),'عدد القطع المباعة: '+(d.pieces||0),'تكلفة القطع المباعة: '+fmt(d.cost||0),'','*المصروفات:*'];
+ if(!expenses.length)lines.push('لا يوجد مصروفات مسجلة');
+ expenses.forEach(x=>lines.push('• '+(categories[x.category]||x.category)+(x.note?' — '+x.note:'')+': '+fmt(x.amount)));
+ lines.push('إجمالي مصروفات المحل: '+fmt(shop),'إجمالي المسحوبات والمصروفات الشخصية: '+fmt(personal),'*إجمالي المصروف: '+fmt(shop+personal)+'*');
+ BLNK.share(lines.join('\n'))
 };
 $('day-add-expense').onclick=()=>{let date=$('day-date').value,category=$('day-expense-category').value,amount=Math.round(Number($('day-expense-amount').value)*100),note=$('day-expense-note').value.trim();
  if(!date||!date.startsWith(month)||!categories[category]||!Number.isFinite(amount)||amount<=0){notify('راجع بند المصروف والمبلغ');return}
